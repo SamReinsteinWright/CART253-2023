@@ -15,6 +15,11 @@ createCanvas(500,500);
 
 background(200,200,200);
 
+rectMode(CENTER);
+noStroke();
+fill(255,100,38);
+rect(250,250,100,50);
+
 
 }
 
