@@ -1,15 +1,16 @@
 /**
- * Title of Project
- * Author Name
+ * I Like To Move It
+ * Sam Reinstein Wright
  * 
- * This is a template. You must fill in the title, author, 
- * and this description to match your project!
+ * Using map() and contraint() plus variables to make things happen!
  */
 
 "use strict";
 
 /**
- * Description of preload
+ * No clue yet but i bet its
+ *  for preloading images and things so 
+ * they come in fully downloaded
 */
 function preload() {
 
@@ -17,16 +18,22 @@ function preload() {
 
 
 /**
- * Description of setup
+ * Canvas creation station!
 */
 function setup() {
+createCanvas(windowWidth,windowHeight);
+
+
+
 
 }
 
 
 /**
- * Description of draw()
+ * makin shit!
 */
 function draw() {
-
+    background(200,200,200);
+    rectMode(CENTER);
+    rect(mouseX,mouseY,100,100);
 }
