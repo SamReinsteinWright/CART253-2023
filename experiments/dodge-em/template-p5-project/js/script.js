@@ -44,18 +44,19 @@ function setup() {
 }
 
 function draw() {
-    distance = dist(circle.x,circle.y,mouseX,mouseY);
-    circle.fill = map(distance,0,255,0,distance);
+    distance = dist(circle.x,circle.y,mouseX,mouseY); // distance from enemy to cursor
+    circle.fill = map(distance,0,255,0,distance); // colour of circle (not applicable rn)
     background(backgroundShade);
-    backgroundShade = 0; // NEW: Increasing the background shade
-    mousePosX = constrain(mouseX,0,width);
+    backgroundShade = 0; 
+    mousePosX = constrain(mouseX,0,width); // constraining mouse pos so circle.x and shit cant get too far
     mousePosY = constrain(mouseY,0,height);
   
-    // NEW: If the background shade is exactly 255 (white, the maximum color number)
+    
     if (backgroundShade === 255) {
-      // Set it back to 0 (black)
+      
       backgroundShade = 0;
     }
+    // this section makes the flipped variable so something
     if (Flipped.x === false) {
         circle.speed.x = 1
     }
@@ -68,18 +69,51 @@ function draw() {
     else {
         circle.speed.y = -1
     }
-  
+    //^^^^
+    //this is movement
     circle.x = circle.x + circle.speed.x;
     circle.y = circle.y + circle.speed.y;
-  
-    // If the circle is off the right side
+    //^^^^
+    //this makes circle bounce off of walls
     if (circle.x > width) {
-      // Move it back to the left
+      
       Flipped.x = true;
       
     }
   
-    // NEW: If the circle is off the left side
+    
+    if (circle.x < 0) {
+        Flipped.x = false; 
+            
+
+    }
+    
+    if (circle.y > height) {
+        Flipped.y = true;
+    }
+    if (circle.y < 0) {
+        Flipped.y = false;
+       
+    }
+    //^^^^
+    //this makes circle bounce towards cursor
+    if (circle.x > mousePosX) {
+        if (mousePosX < width - 50) { 
+            Flipped.x = true;
+        }
+    }
+    else if (circle.x < mousePosX) {
+        if (mousePosX > 50) {
+        Flipped.x = false;
+        }
+    }
+    if (circle.x > width) {
+    
+      Flipped.x = true;
+      
+    }
+  
+    
     if (circle.x < 0) {
         Flipped.x = false; 
             
@@ -104,42 +138,12 @@ function draw() {
         }
     }
     if (circle.x > width) {
-      // Move it back to the left
-      Flipped.x = true;
-      
-    }
-  
-    // NEW: If the circle is off the left side
-    if (circle.x < 0) {
-        Flipped.x = false; 
-            
 
-    }
-    
-    if (circle.y > height) {
-        Flipped.y = true;
-    }
-    if (circle.y < 0) {
-        Flipped.y = false;
-       
-    }
-    if (circle.x > mousePosX) {
-        if (mousePosX < width - 50) { 
-            Flipped.x = true;
-        }
-    }
-    else if (circle.x < mousePosX) {
-        if (mousePosX > 50) {
-        Flipped.x = false;
-        }
-    }
-    if (circle.x > width) {
-      // Move it back to the left
       Flipped.x = true;
       
     }
   
-    // NEW: If the circle is off the left side
+    
     if (circle.x < 0) {
         Flipped.x = false; 
             
@@ -173,6 +177,8 @@ function draw() {
         Flipped.y = false;
         }
     }
+    // ^^^^ i think i doubled the code? not sure
+    // this speeds up enemy
     if (Playing === 0){
         circle.speed.x += 0.1;
         circle.speed.y += 0.1;
@@ -185,6 +191,7 @@ function draw() {
         circle.speed.x = 1;
         circle.speed.y = 1;
     }
+    //^^^^
 
 
     
@@ -196,7 +203,7 @@ function draw() {
   
 
   
-    //ellipse(circle.x, circle.y, circle.size);
+    //this displays the assets
     imageMode(CENTER)
     if (Flipped.x === false){
         image(img,circle.x,circle.y)
