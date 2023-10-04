@@ -89,7 +89,7 @@ function preload() {
     vy: 0,
     speed: 2,
   }
-  
+  let gravity_vel = 0;
   let titleString = "'Making Progress'";
   let heading = "use W A S D to move";
   let endingString = "I\'m proud of you.\n It can be hard to push through.\n You got this.";
@@ -140,6 +140,9 @@ function preload() {
     circle.x = circle.x + circle.vx;
     circle.y = circle.y + circle.vy;
     }
+    if (circle.y < height) gravity_vel++;
+    else gravity_vel = 0;
+    circle.y += gravity_vel;
     toxicity()
     fill(255);
 
@@ -174,7 +177,7 @@ function preload() {
       }
     if (key === `w`) {
         
-        circle.vy = -1;
+        circle.vy = -10;
         circle.vx = 0; 
       }
     if (key === `d`) {
