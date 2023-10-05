@@ -35,7 +35,7 @@ let lilBox = {
 }
 let Bigbox = {
   //top
-  x: 400,
+  x: 410,
   y: 3750,
   w: 250,
   h: 10,
@@ -45,8 +45,8 @@ let Bigbox = {
   w1: 10,
   h1: 70,
   //bottom
-  x2: 405,
-  y2: 3820,
+  x2: 410,
+  y2: 3830,
   w2: 250,
   h2: 10,
   //rightSide
@@ -57,19 +57,19 @@ let Bigbox = {
 }
 let Bigbox1 = {
   //top
-  x: 475,
+  x: 480,
   y: 3500,
   w: 50,
   h: 10,
   //leftside
   x1: 450,
-  y1: 3516,
-  w1: 13,
-  h1: 39,
+  y1: 3525,
+  w1: 10,
+  h1: 40,
   //bottom
   x2: 480,
-  y2: 3530,
-  w2: 46,
+  y2: 3550,
+  w2: 50,
   h2: 10
 }
 let Bigbox2 = {
@@ -79,18 +79,18 @@ let Bigbox2 = {
   w: 150,
   h: 10,
   //leftside
-  x1: 180,
-  y1: 3332,
+  x1: 170,
+  y1: 3336,
   w1: 10,
   h1: 65,
   //bottom
   x2: 250,
-  y2: 3360,
+  y2: 3373,
   w2: 150,
   h2: 10,
   //rightSide
-  x3: 325,
-  y3: 3332,
+  x3: 330,
+  y3: 3336,
   w3: 10,
   h3: 65
 }
@@ -116,6 +116,28 @@ let Bigbox3 = {
   w3: 10,
   h3: 150
 }
+let Bigbox4 = {
+  //Lblocktop
+  x: 100,
+  y: 2900,
+  w: 200,
+  h: 10,
+  //Lblockleftside
+  x1: 205,
+  y1: 2980,
+  w1: 10,
+  h1: 150,
+  //Lblockbottom
+  x2: 100,
+  y2: 3060,
+  w2: 200,
+  h2: 10,
+  //LblockrightSide
+  x3: 425,
+  y3: 3080,
+  w3: 10,
+  h3: 150,
+}
 let Hitbox = {
   x: 100,
   y: 100,
@@ -128,7 +150,7 @@ let charge = 1;
 let gravity = 0.1;
 let grounded = false;
  
-  let titleString = "'Annoying Jump Game'\n use W to jump";
+  let titleString = "'Annoying Jump Game'\n \n use W to charge your jump\n \n jumps towards cursor \n \n farther the cursor, bigger the jump";
   let heading = "good goddamn luck";
   let endingString = "I\'m proud of you.\n It can be hard to push through.\n You got this.";
   
@@ -275,7 +297,7 @@ let grounded = false;
         Hitbox.x + Hitbox.w / 2 > Bigbox3.x - Bigbox3.w / 2 &&
         Hitbox.y - Hitbox.h / 2 < Bigbox3.y + Bigbox3.h / 2 &&
         Hitbox.y + Hitbox.h / 2 > Bigbox3.y - Bigbox3.h / 2 ) {
-          player.vy = -player.vy;
+          player.vy = -(player.vy+5);
         }
     //bleftSide1
     if (Hitbox.x - Hitbox.w / 2 < Bigbox3.x1 + Bigbox3.w1 / 2 &&
@@ -297,6 +319,29 @@ let grounded = false;
         Hitbox.y - Hitbox.h / 2 < Bigbox3.y3 + Bigbox3.h3 / 2 &&
         Hitbox.y + Hitbox.h / 2 > Bigbox3.y3 - Bigbox3.h3 / 2) {
           player.vx = -player.vx;
+        }
+    //Lblocktop1
+    if (Hitbox.x - Hitbox.w / 2 < Bigbox4.x + Bigbox4.w / 2 &&
+        Hitbox.x + Hitbox.w / 2 > Bigbox4.x - Bigbox4.w / 2 &&
+        Hitbox.y - Hitbox.h / 2 < Bigbox4.y + Bigbox4.h / 2 &&
+        Hitbox.y + Hitbox.h / 2 > Bigbox4.y - Bigbox4.h / 2 &&
+        jumped === false) {
+          grounded = true;
+          player.y = Bigbox4.y - 55;
+        }
+    //LblockleftSide1
+    if (Hitbox.x - Hitbox.w / 2 < Bigbox4.x1 + Bigbox4.w1 / 2 &&
+        Hitbox.x + Hitbox.w / 2 > Bigbox4.x1 - Bigbox4.w1 / 2 &&
+        Hitbox.y - Hitbox.h / 2 < Bigbox4.y1 + Bigbox4.h1 / 2 &&
+        Hitbox.y + Hitbox.h / 2 > Bigbox4.y1 - Bigbox4.h1 / 2) {
+          player.vx = -player.vx;
+        }
+    //Lblockbottom1
+    if (Hitbox.x - Hitbox.w / 2 < Bigbox4.x2 + Bigbox4.w2 / 2 &&
+        Hitbox.x + Hitbox.w / 2 > Bigbox4.x2 - Bigbox4.w2 / 2 &&
+        Hitbox.y - Hitbox.h / 2 < Bigbox4.y2 + Bigbox4.h2 / 2 &&
+        Hitbox.y + Hitbox.h / 2 > Bigbox4.y2 - Bigbox4.h2 / 2) {
+          player.vy = -player.vy;
         }
 
 
@@ -403,6 +448,17 @@ let grounded = false;
     //brightSide
     fill(0,255,255)
     rect(Bigbox3.x3,Bigbox3.y3,Bigbox3.w3,Bigbox3.h3)
+    //LBLOCK PLATFORM --- 1
+    //top
+    fill(255,0,0)
+    rect(Bigbox4.x,Bigbox4.y,Bigbox4.w,Bigbox4.h)
+    //leftside
+    fill(0,255,255)
+    rect(Bigbox4.x1,Bigbox4.y1,Bigbox4.w1,Bigbox4.h1)
+    //bottom
+    fill(255,255,0)
+    rect(Bigbox4.x2,Bigbox4.y2,Bigbox4.w2,Bigbox4.h2)
+
 }
 
 function keyReleased() {
