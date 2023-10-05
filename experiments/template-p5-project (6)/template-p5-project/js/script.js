@@ -160,20 +160,65 @@ let Bigbox5 = {
   w3: 10,
   h3: 20
 }
+let Bigbox6 = {
+  //top
+  x: 350,
+  y: 2400,
+  w: 400,
+  h: 300,
+  //leftside
+  x1: 185,
+  y1: 2665,
+  w1: 10,
+  h1: 20,
+  //bottom
+  x2: 200,
+  y2: 2680,
+  w2: 20,
+  h2: 10,
+  //rightSide
+  x3: 215,
+  y3: 2665,
+  w3: 10,
+  h3: 20
+}
+let Bigbox7 = {
+  //top
+  x: 465,
+  y: 2400,
+  w: 70,
+  h: 10,
+  //leftside
+  x1: 425,
+  y1: 2415,
+  w1: 10,
+  h1: 20,
+  //bottom
+  x2: 465,
+  y2: 2430,
+  w2: 70,
+  h2: 10,
+  //rightSide
+  x3: 215,
+  y3: 2450,
+  w3: 10,
+  h3: 20
+}
 let Hitbox = {
   x: 100,
   y: 100,
-  w: 100,
-  h: 100
+  w: 60,
+  h: 75
 
 }
+
 let jumped = false;
 let charge = 1;
 let gravity = 0.1;
 let grounded = false;
  
-  let titleString = "'Annoying Jump Game'\n \n use W to charge your jump\n \n jumps towards cursor \n \n farther the cursor, bigger the jump";
-  let heading = "good goddamn luck";
+  let titleString = "'Annoying Jump Game'\n \n your character jumps \n towards the cursor \n \n The farther the cursor,\n the bigger the jump \n \n press any key \n to continue" ;
+  let heading = "good goddamn luck \n \n scroll to the bottom \n then press 'w'";
   let endingString = "I\'m proud of you.\n It can be hard to push through.\n You got this.";
   
   let state = `title`;
@@ -242,7 +287,7 @@ let grounded = false;
         Hitbox.y + Hitbox.h / 2 > Bigbox.y - Bigbox.h / 2 &&
         jumped === false) {
           grounded = true;
-          player.y = Bigbox.y - 55;
+          player.y = Bigbox.y - 42.5;
         }
     else {
       grounded = false;
@@ -268,7 +313,7 @@ let grounded = false;
         Hitbox.y + Hitbox.h / 2 > Bigbox1.y - Bigbox1.h / 2 &&
         jumped === false) {
           grounded = true;
-          player.y = Bigbox1.y - 55;
+          player.y = Bigbox1.y - 42.5;
         }
     //leftSide2
     if (Hitbox.x - Hitbox.w / 2 < Bigbox1.x1 + Bigbox1.w1 / 2 &&
@@ -291,7 +336,7 @@ let grounded = false;
         Hitbox.y + Hitbox.h / 2 > Bigbox2.y - Bigbox2.h / 2 &&
         jumped === false) {
           grounded = true;
-          player.y = Bigbox2.y - 55;
+          player.y = Bigbox2.y - 42.5;
         }
     //leftSide3
     if (Hitbox.x - Hitbox.w / 2 < Bigbox2.x1 + Bigbox2.w1 / 2 &&
@@ -319,7 +364,7 @@ let grounded = false;
         Hitbox.x + Hitbox.w / 2 > Bigbox3.x - Bigbox3.w / 2 &&
         Hitbox.y - Hitbox.h / 2 < Bigbox3.y + Bigbox3.h / 2 &&
         Hitbox.y + Hitbox.h / 2 > Bigbox3.y - Bigbox3.h / 2 ) {
-          player.vy = -(player.vy+5);
+          player.vy = -(player.vy)*1.1;
         }
     //bleftSide1
     if (Hitbox.x - Hitbox.w / 2 < Bigbox3.x1 + Bigbox3.w1 / 2 &&
@@ -349,7 +394,7 @@ let grounded = false;
         Hitbox.y + Hitbox.h / 2 > Bigbox4.y - Bigbox4.h / 2 &&
         jumped === false) {
           grounded = true;
-          player.y = Bigbox4.y - 55;
+          player.y = Bigbox4.y - 42.5;
         }
     //LblockleftSide1
     if (Hitbox.x - Hitbox.w / 2 < Bigbox4.x1 + Bigbox4.w1 / 2 &&
@@ -372,7 +417,9 @@ let grounded = false;
         Hitbox.y + Hitbox.h / 2 > Bigbox5.y - Bigbox5.h / 2 &&
         jumped === false) {
           grounded = true;
-          player.y = Bigbox5.y - 55;
+          player.y = Bigbox5.y - 42;
+          fill(255,0,0)
+          text(`While in the red zone,\n your horizontal movement is slowed.`,300, 2550)
         }
     //leftSide4
     if (Hitbox.x - Hitbox.w / 2 < Bigbox5.x1 + Bigbox5.w1 / 2 &&
@@ -394,6 +441,42 @@ let grounded = false;
         Hitbox.y - Hitbox.h / 2 < Bigbox5.y3 + Bigbox5.h3 / 2 &&
         Hitbox.y + Hitbox.h / 2 > Bigbox5.y3 - Bigbox5.h3 / 2) {
           player.vx = -player.vx;
+        }
+    //slowbox
+    if (Hitbox.x - Hitbox.w / 2 < Bigbox6.x + Bigbox6.w / 2 &&
+    Hitbox.x + Hitbox.w / 2 > Bigbox6.x - Bigbox6.w / 2 &&
+    Hitbox.y - Hitbox.h / 2 < Bigbox6.y + Bigbox6.h / 2 &&
+    Hitbox.y + Hitbox.h / 2 > Bigbox6.y - Bigbox6.h / 2) {
+      if (player.vx > 1.5){
+        player.vx = player.vx -0.5;
+      }
+      if (player.vx < -1.5){
+        player.vx = player.vx +0.5;
+      }
+     
+    }
+    //top5
+    if (Hitbox.x - Hitbox.w / 2 < Bigbox7.x + Bigbox7.w / 2 &&
+        Hitbox.x + Hitbox.w / 2 > Bigbox7.x - Bigbox7.w / 2 &&
+        Hitbox.y - Hitbox.h / 2 < Bigbox7.y + Bigbox7.h / 2 &&
+        Hitbox.y + Hitbox.h / 2 > Bigbox7.y - Bigbox7.h / 2 &&
+        jumped === false) {
+          grounded = true;
+          player.y = Bigbox7.y - 42.5;
+        }
+    //leftSide5
+    if (Hitbox.x - Hitbox.w / 2 < Bigbox7.x1 + Bigbox7.w1 / 2 &&
+        Hitbox.x + Hitbox.w / 2 > Bigbox7.x1 - Bigbox7.w1 / 2 &&
+        Hitbox.y - Hitbox.h / 2 < Bigbox7.y1 + Bigbox7.h1 / 2 &&
+        Hitbox.y + Hitbox.h / 2 > Bigbox7.y1 - Bigbox7.h1 / 2) {
+          player.vx = -player.vx;
+        }
+    //bottom5
+    if (Hitbox.x - Hitbox.w / 2 < Bigbox7.x2 + Bigbox7.w2 / 2 &&
+        Hitbox.x + Hitbox.w / 2 > Bigbox7.x2 - Bigbox7.w2 / 2 &&
+        Hitbox.y - Hitbox.h / 2 < Bigbox7.y2 + Bigbox7.h2 / 2 &&
+        Hitbox.y + Hitbox.h / 2 > Bigbox7.y2 - Bigbox7.h2 / 2) {
+          player.vy = -player.vy;
         }
 
 
@@ -437,13 +520,13 @@ let grounded = false;
         player.vx = 0;
         player.ay = 0;
         player.y = height;
+        fill(255)
+        text(`Hold "w" to charge your jump. \n Then release to jump. \n You can land on the red. \n    You bounce horizontally off blue \n and vertically off yellow.`,140, 3830)
     }
     player.x = constrain(player.x, 0,width);
     player.y = constrain(player.y,0,height);
-    
+    fill(255,255,255)
     rect(player.x, player.y - 75, charge, lilBox.size.y)
-
-    ellipse(player.x, player.y, player.size);
     
     noStroke()
     Hitbox.x = player.x
@@ -523,6 +606,20 @@ let grounded = false;
     //rightSide
     fill(0,255,255)
     rect(Bigbox5.x3,Bigbox5.y3,Bigbox5.w3,Bigbox5.h3)
+    //SLOWBOX --- 1
+    fill(255,0,0,50)
+    rect(Bigbox6.x,Bigbox6.y,Bigbox6.w,Bigbox6.h)
+    //PLATFORM --- 5
+    //top
+    fill(255,0,0)
+    rect(Bigbox7.x,Bigbox7.y,Bigbox7.w,Bigbox7.h)
+    //leftside
+    fill(0,255,255)
+    rect(Bigbox7.x1,Bigbox7.y1,Bigbox7.w1,Bigbox7.h1)
+    //bottom
+    fill(255,255,0)
+    rect(Bigbox7.x2,Bigbox7.y2,Bigbox7.w2,Bigbox7.h2)
+
 
 }
 
