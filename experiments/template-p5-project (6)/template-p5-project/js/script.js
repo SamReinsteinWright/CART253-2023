@@ -138,6 +138,28 @@ let Bigbox4 = {
   w3: 10,
   h3: 150,
 }
+let Bigbox5 = {
+  //top
+  x: 200,
+  y: 2650,
+  w: 20,
+  h: 10,
+  //leftside
+  x1: 185,
+  y1: 2665,
+  w1: 10,
+  h1: 20,
+  //bottom
+  x2: 200,
+  y2: 2680,
+  w2: 20,
+  h2: 10,
+  //rightSide
+  x3: 215,
+  y3: 2665,
+  w3: 10,
+  h3: 20
+}
 let Hitbox = {
   x: 100,
   y: 100,
@@ -343,6 +365,36 @@ let grounded = false;
         Hitbox.y + Hitbox.h / 2 > Bigbox4.y2 - Bigbox4.h2 / 2) {
           player.vy = -player.vy;
         }
+    //top4
+    if (Hitbox.x - Hitbox.w / 2 < Bigbox5.x + Bigbox5.w / 2 &&
+        Hitbox.x + Hitbox.w / 2 > Bigbox5.x - Bigbox5.w / 2 &&
+        Hitbox.y - Hitbox.h / 2 < Bigbox5.y + Bigbox5.h / 2 &&
+        Hitbox.y + Hitbox.h / 2 > Bigbox5.y - Bigbox5.h / 2 &&
+        jumped === false) {
+          grounded = true;
+          player.y = Bigbox5.y - 55;
+        }
+    //leftSide4
+    if (Hitbox.x - Hitbox.w / 2 < Bigbox5.x1 + Bigbox5.w1 / 2 &&
+        Hitbox.x + Hitbox.w / 2 > Bigbox5.x1 - Bigbox5.w1 / 2 &&
+        Hitbox.y - Hitbox.h / 2 < Bigbox5.y1 + Bigbox5.h1 / 2 &&
+        Hitbox.y + Hitbox.h / 2 > Bigbox5.y1 - Bigbox5.h1 / 2) {
+          player.vx = -player.vx;
+        }
+    //bottom4
+    if (Hitbox.x - Hitbox.w / 2 < Bigbox5.x2 + Bigbox5.w2 / 2 &&
+        Hitbox.x + Hitbox.w / 2 > Bigbox5.x2 - Bigbox5.w2 / 2 &&
+        Hitbox.y - Hitbox.h / 2 < Bigbox5.y2 + Bigbox5.h2 / 2 &&
+        Hitbox.y + Hitbox.h / 2 > Bigbox5.y2 - Bigbox5.h2 / 2) {
+          player.vy = -player.vy;
+        }
+    //rightSide4
+    if (Hitbox.x - Hitbox.w / 2 < Bigbox5.x3 + Bigbox5.w3 / 2 &&
+        Hitbox.x + Hitbox.w / 2 > Bigbox5.x3 - Bigbox5.w3 / 2 &&
+        Hitbox.y - Hitbox.h / 2 < Bigbox5.y3 + Bigbox5.h3 / 2 &&
+        Hitbox.y + Hitbox.h / 2 > Bigbox5.y3 - Bigbox5.h3 / 2) {
+          player.vx = -player.vx;
+        }
 
 
 
@@ -458,6 +510,19 @@ let grounded = false;
     //bottom
     fill(255,255,0)
     rect(Bigbox4.x2,Bigbox4.y2,Bigbox4.w2,Bigbox4.h2)
+    //PLATFORM --- 4
+    //top
+    fill(255,0,0)
+    rect(Bigbox5.x,Bigbox5.y,Bigbox5.w,Bigbox5.h)
+    //leftside
+    fill(0,255,255)
+    rect(Bigbox5.x1,Bigbox5.y1,Bigbox5.w1,Bigbox5.h1)
+    //bottom
+    fill(255,255,0)
+    rect(Bigbox5.x2,Bigbox5.y2,Bigbox5.w2,Bigbox5.h2)
+    //rightSide
+    fill(0,255,255)
+    rect(Bigbox5.x3,Bigbox5.y3,Bigbox5.w3,Bigbox5.h3)
 
 }
 
