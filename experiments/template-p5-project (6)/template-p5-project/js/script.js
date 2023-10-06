@@ -98,7 +98,7 @@ let Bigbox3 = {
   //btop
   x: 400,
   y: 3000,
-  w: 50,
+  w: 40,
   h: 10,
   //bleftside
   x1: 375,
@@ -108,7 +108,7 @@ let Bigbox3 = {
   //bbottom
   x2: 400,
   y2: 3160,
-  w2: 50,
+  w2: 40,
   h2: 10,
   //brightSide
   x3: 425,
@@ -204,6 +204,44 @@ let Bigbox7 = {
   w3: 10,
   h3: 20
 }
+// lblock
+let Bigbox8 = {
+  //top
+  x: 250,
+  y: 2200,
+  w: 70,
+  h: 10,
+  //leftside
+  x1: 290,
+  y1: 2145,
+  w1: 10,
+  h1: 100,
+  //bottom
+  x2: 260,
+  y2: 2220,
+  w2: 90,
+  h2: 10,
+  //rightSide
+  x3: 310,
+  y3: 2155,
+  w3: 10,
+  h3: 120,
+  //leftSide1
+  x4: 210,
+  y4: 2210,
+  w4: 10,
+  h4: 10,
+  //rightSide1
+  x5: 100,
+  y5: 100,
+  w5: 10,
+  h5: 100,
+  //bouncyTop
+  x6: 300,
+  y6: 2090,
+  w6: 10,
+  h6: 10,
+}
 let Hitbox = {
   x: 100,
   y: 100,
@@ -217,7 +255,7 @@ let charge = 1;
 let gravity = 0.1;
 let grounded = false;
  
-  let titleString = "'Annoying Jump Game'\n \n your character jumps \n towards the cursor \n \n The farther the cursor,\n the bigger the jump \n \n press any key \n to continue" ;
+  let titleString = "'JumpThing'\n \n your character jumps \n towards the cursor \n \n The farther the cursor,\n the bigger the jump \n \n press any key \n to continue" ;
   let heading = "good goddamn luck \n \n scroll to the bottom \n then press 'w'";
   let endingString = "I\'m proud of you.\n It can be hard to push through.\n You got this.";
   
@@ -478,6 +516,50 @@ let grounded = false;
         Hitbox.y + Hitbox.h / 2 > Bigbox7.y2 - Bigbox7.h2 / 2) {
           player.vy = -player.vy;
         }
+    //lblocktop2
+    if (Hitbox.x - Hitbox.w / 2 < Bigbox8.x + Bigbox8.w / 2 &&
+        Hitbox.x + Hitbox.w / 2 > Bigbox8.x - Bigbox8.w / 2 &&
+        Hitbox.y - Hitbox.h / 2 < Bigbox8.y + Bigbox8.h / 2 &&
+        Hitbox.y + Hitbox.h / 2 > Bigbox8.y - Bigbox8.h / 2 &&
+        jumped === false) {
+          grounded = true;
+          player.y = Bigbox8.y - 42.5;
+        }
+    //lblockleft
+    if (Hitbox.x - Hitbox.w / 2 < Bigbox8.x1 + Bigbox8.w1 / 2 &&
+        Hitbox.x + Hitbox.w / 2 > Bigbox8.x1 - Bigbox8.w1 / 2 &&
+        Hitbox.y - Hitbox.h / 2 < Bigbox8.y1 + Bigbox8.h1 / 2 &&
+        Hitbox.y + Hitbox.h / 2 > Bigbox8.y1 - Bigbox8.h1 / 2) {
+          player.vx = -player.vx;
+        }
+    //lblockbtop1
+    if (Hitbox.x - Hitbox.w / 2 < Bigbox8.x6 + Bigbox8.w6 / 2 &&
+        Hitbox.x + Hitbox.w / 2 > Bigbox8.x6 - Bigbox8.w6 / 2 &&
+        Hitbox.y - Hitbox.h / 2 < Bigbox8.y6 + Bigbox8.h6 / 2 &&
+        Hitbox.y + Hitbox.h / 2 > Bigbox8.y6 - Bigbox8.h6 / 2 ) {
+          player.vy = -(player.vy)*1.1;
+        }
+    //lblockrightside
+    if (Hitbox.x - Hitbox.w / 2 < Bigbox8.x3 + Bigbox8.w3 / 2 &&
+        Hitbox.x + Hitbox.w / 2 > Bigbox8.x3 - Bigbox8.w3 / 2 &&
+        Hitbox.y - Hitbox.h / 2 < Bigbox8.y3 + Bigbox8.h3 / 2 &&
+        Hitbox.y + Hitbox.h / 2 > Bigbox8.y3 - Bigbox8.h3 / 2) {
+          player.vx = -player.vx;
+        }
+    //lblockbottom
+    if (Hitbox.x - Hitbox.w / 2 < Bigbox8.x2 + Bigbox8.w2 / 2 &&
+        Hitbox.x + Hitbox.w / 2 > Bigbox8.x2 - Bigbox8.w2 / 2 &&
+        Hitbox.y - Hitbox.h / 2 < Bigbox8.y2 + Bigbox8.h2 / 2 &&
+        Hitbox.y + Hitbox.h / 2 > Bigbox8.y2 - Bigbox8.h2 / 2) {
+          player.vy = -player.vy;
+        }
+    //lblockleftSide1
+    if (Hitbox.x - Hitbox.w / 2 < Bigbox8.x4 + Bigbox8.w4 / 2 &&
+        Hitbox.x + Hitbox.w / 2 > Bigbox8.x4 - Bigbox8.w4 / 2 &&
+        Hitbox.y - Hitbox.h / 2 < Bigbox8.y4 + Bigbox8.h4 / 2 &&
+        Hitbox.y + Hitbox.h / 2 > Bigbox8.y4 - Bigbox8.h4 / 2) {
+          player.vx = -player.vx;
+        }
 
 
 
@@ -619,6 +701,27 @@ let grounded = false;
     //bottom
     fill(255,255,0)
     rect(Bigbox7.x2,Bigbox7.y2,Bigbox7.w2,Bigbox7.h2)
+    //LBLOCKPLATFORM --- 2
+    //top
+    fill(255,0,0)
+    rect(Bigbox8.x,Bigbox8.y,Bigbox8.w,Bigbox8.h)
+    //leftSide
+    fill(0,255,255)
+    rect(Bigbox8.x1,Bigbox8.y1,Bigbox8.w1,Bigbox8.h1)
+    //lblockbtop
+    fill(255,255,0)
+    rect(Bigbox8.x6,Bigbox8.y6,Bigbox8.w6,Bigbox8.h6)
+    //lblockrightside
+    fill(0,255,255)
+    rect(Bigbox8.x3,Bigbox8.y3,Bigbox8.w3,Bigbox8.h3)
+    //lblockbottom
+    fill(255,255,0)
+    rect(Bigbox8.x2,Bigbox8.y2,Bigbox8.w2,Bigbox8.h2)
+    //lblockleftSide1
+    fill(0,255,255)
+    rect(Bigbox8.x4,Bigbox8.y4,Bigbox8.w4,Bigbox8.h4)
+
+
 
 
 }
