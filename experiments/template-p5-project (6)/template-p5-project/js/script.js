@@ -242,6 +242,36 @@ let Bigbox8 = {
   w6: 10,
   h6: 10,
 }
+//slipperyblock
+let Bigbox9 = {
+  //top
+  x: 110,
+  y: 1900,
+  w: 90,
+  h: 10,
+  //leftside
+  x1: 60,
+  y1: 1920,
+  w1: 10,
+  h1: 30,
+  //bottom
+  x2: 110,
+  y2: 1940,
+  w2: 90,
+  h2: 10,
+  //rightSide
+  x3: 160,
+  y3: 1920,
+  w3: 10,
+  h3: 30
+}
+let Bigbox10 = {
+  //top
+  x: 250,
+  y: 1700,
+  w: 500,
+  h: 50,
+}
 let Hitbox = {
   x: 100,
   y: 100,
@@ -257,7 +287,7 @@ let grounded = false;
  
   let titleString = "'JumpThing'\n \n your character jumps \n towards the cursor \n \n The farther the cursor,\n the bigger the jump \n \n press any key \n to continue" ;
   let heading = "good goddamn luck \n \n scroll to the bottom \n then press 'w'";
-  let endingString = "I\'m proud of you.\n It can be hard to push through.\n You got this.";
+  let endingString = "You did it.\n Struggle is essential to self worth.\n \n Or... \n \n More importantly... \n \n Overcoming such struggles \n is what graces us with self worth. \n \n YOU beat this game. \n \n YOU overcame frustrating \n level design. \n \n (and countless glitches I assume) \n \n So... \n \n Have some pride! Self love! \n \n If you could overcome this, \n what next can you conquer!";
   
   let state = `title`;
   
@@ -301,7 +331,7 @@ let grounded = false;
   }
   
   function animation() {
-    if (player.y === 0) {
+    if (player.y === 1700) {
       state = `ending`;
     }
     if (keyIsDown(87)) {
@@ -523,7 +553,9 @@ let grounded = false;
         Hitbox.y + Hitbox.h / 2 > Bigbox8.y - Bigbox8.h / 2 &&
         jumped === false) {
           grounded = true;
-          player.y = Bigbox8.y - 42.5;
+          player.y = Bigbox8.y - 42;
+          fill(255,0,0)
+          text(`While in the magenta platform,\n you slide.`,300, 2000)
         }
     //lblockleft
     if (Hitbox.x - Hitbox.w / 2 < Bigbox8.x1 + Bigbox8.w1 / 2 &&
@@ -559,6 +591,69 @@ let grounded = false;
         Hitbox.y - Hitbox.h / 2 < Bigbox8.y4 + Bigbox8.h4 / 2 &&
         Hitbox.y + Hitbox.h / 2 > Bigbox8.y4 - Bigbox8.h4 / 2) {
           player.vx = -player.vx;
+        }
+    //slipperytop
+    if (Hitbox.x - Hitbox.w / 2 < Bigbox9.x + Bigbox9.w / 2 &&
+        Hitbox.x + Hitbox.w / 2 > Bigbox9.x - Bigbox9.w / 2 &&
+        Hitbox.y - Hitbox.h / 2 < Bigbox9.y + Bigbox9.h / 2 &&
+        Hitbox.y + Hitbox.h / 2 > Bigbox9.y - Bigbox9.h / 2 &&
+        jumped === false) {
+          if (player.vx > 0){
+            player.vx = player.vx -0.1;
+            player.vy = 0;
+            player.ay = 0;
+            if (player.vx < 0.1) {
+            grounded = true;
+            }
+          }
+        
+          
+          if (player.vx < 0){
+            player.vx = player.vx +0.1;
+            player.vy = 0;
+            player.ay = 0;
+            if (player.vx > -0.1) {
+              grounded = true;
+            }
+          }
+          if (player.vx === 0) {
+            grounded = true;
+          }
+        
+          
+          player.y = Bigbox9.y - 42.5;
+        }
+    //slipperyleftside
+    if (Hitbox.x - Hitbox.w / 2 < Bigbox9.x1 + Bigbox9.w1 / 2 &&
+        Hitbox.x + Hitbox.w / 2 > Bigbox9.x1 - Bigbox9.w1 / 2 &&
+        Hitbox.y - Hitbox.h / 2 < Bigbox9.y1 + Bigbox9.h1 / 2 &&
+        Hitbox.y + Hitbox.h / 2 > Bigbox9.y1 - Bigbox9.h1 / 2) {
+          if (player.vx > 0){
+          player.vx = -player.vx;
+          }
+        }
+    //slipperybottom
+    if (Hitbox.x - Hitbox.w / 2 < Bigbox9.x2 + Bigbox9.w2 / 2 &&
+        Hitbox.x + Hitbox.w / 2 > Bigbox9.x2 - Bigbox9.w2 / 2 &&
+        Hitbox.y - Hitbox.h / 2 < Bigbox9.y2 + Bigbox9.h2 / 2 &&
+        Hitbox.y + Hitbox.h / 2 > Bigbox9.y2 - Bigbox9.h2 / 2) {
+        
+          player.vy = -player.vy;
+        
+        }
+    //slipperyrightSide
+    if (Hitbox.x - Hitbox.w / 2 < Bigbox9.x3 + Bigbox9.w3 / 2 &&
+        Hitbox.x + Hitbox.w / 2 > Bigbox9.x3 - Bigbox9.w3 / 2 &&
+        Hitbox.y - Hitbox.h / 2 < Bigbox9.y3 + Bigbox9.h3 / 2 &&
+        Hitbox.y + Hitbox.h / 2 > Bigbox9.y3 - Bigbox9.h3 / 2) {
+          player.vx = -player.vx;
+        }
+    //top1
+    if (Hitbox.x - Hitbox.w / 2 < Bigbox10.x + Bigbox10.w / 2 &&
+        Hitbox.x + Hitbox.w / 2 > Bigbox10.x - Bigbox10.w / 2 &&
+        Hitbox.y - Hitbox.h / 2 < Bigbox10.y + Bigbox10.h / 2 &&
+        Hitbox.y + Hitbox.h / 2 > Bigbox10.y - Bigbox10.h / 2 ) {
+          state = `ending`
         }
 
 
@@ -720,6 +815,24 @@ let grounded = false;
     //lblockleftSide1
     fill(0,255,255)
     rect(Bigbox8.x4,Bigbox8.y4,Bigbox8.w4,Bigbox8.h4)
+    //SLIPPERYPLATFORM --- 1
+    //top
+    
+    fill(255,0,255)
+    rect(Bigbox9.x,Bigbox9.y,Bigbox9.w,Bigbox9.h)
+    //leftside
+    fill(0,255,255)
+    rect(Bigbox9.x1,Bigbox9.y1,Bigbox9.w1,Bigbox9.h1)
+    //bottom
+    fill(255,255,0)
+    rect(Bigbox9.x2,Bigbox9.y2,Bigbox9.w2,Bigbox9.h2)
+    //rightSide
+    fill(0,255,255)
+    rect(Bigbox9.x3,Bigbox9.y3,Bigbox9.w3,Bigbox9.h3)
+    //upblock
+    fill(0,255,255,50)
+    rect(Bigbox10.x,Bigbox10.y,Bigbox10.w,Bigbox10.h)
+    text(`Goal!`, 250, 1700)
 
 
 
@@ -741,7 +854,7 @@ function keyReleased() {
   function ending() {
     fill(255, 0, 0);
     textSize(32);
-    text(endingString, width / 2, height / 2)
+    text(endingString, width / 2, (height / 2)+ 120)
     circle.x = 0;
     circle.y = 250;
   }
