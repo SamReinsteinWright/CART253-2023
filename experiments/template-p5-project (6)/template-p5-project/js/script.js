@@ -855,8 +855,8 @@ function keyReleased() {
     fill(255, 0, 0);
     textSize(32);
     text(endingString, width / 2, (height / 2)+ 120)
-    circle.x = 0;
-    circle.y = 250;
+    player.x = 250;
+    player.y = 3999;
   }
   
   function keyPressed() {
