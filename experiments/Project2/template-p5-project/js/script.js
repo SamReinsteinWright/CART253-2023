@@ -84,11 +84,25 @@ let player = {
     },
     {
         x: 184,
-        y: 3665,
+        y: 3670,
         w: 10,
         h: 30,
         type: "left"
-      },
+    },
+    {
+        x: 215,
+        y: 3670,
+        w: 10,
+        h: 30,
+        type: "right"
+    },
+    {
+        x: 200,
+        y: 3685,
+        w: 40,
+        h: 10,
+        type: "bottom"
+    },
     {
         x: 200,
         y: 3650,
@@ -241,6 +255,8 @@ function checkGrounded(){
         player.vy += player.ay;
         player.x += player.vx;
         player.y += player.vy;
+        player.vx = constrain(player.vx,-50,50)
+        player.vy = constrain(player.vy, -50,50)
         
       }
 }
