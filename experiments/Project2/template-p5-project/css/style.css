@@ -10,7 +10,8 @@ Also hides overflow.
 **********************************************/
 
 body {
-  padding: 0;
-  margin:25%;
+  padding: 300px;
+  justify-content:left;
+  width: min-content;
   
 }
