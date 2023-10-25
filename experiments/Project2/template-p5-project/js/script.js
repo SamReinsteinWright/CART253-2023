@@ -110,6 +110,175 @@ let player = {
         h: 25,
         type: "top"
     },
+    {
+        x: 384,
+        y: 3670,
+        w: 10,
+        h: 30,
+        type: "left"
+    },
+    {
+        x: 415,
+        y: 3670,
+        w: 10,
+        h: 30,
+        type: "right"
+    },
+    {
+        x: 400,
+        y: 3685,
+        w: 40,
+        h: 10,
+        type: "bottom"
+    },
+    {
+        x: 400,
+        y: 3650,
+        w: 40,
+        h: 25,
+        type: "top"
+    },
+    {
+        x: 500,
+        y: 3650,
+        w: 10,
+        h: 220,
+        type: "left"
+    },
+    {
+        x: 531,
+        y: 3605,
+        w: 10,
+        h: 140,
+        type: "right"
+    },
+    {
+        x: 516,
+        y: 3540,
+        w: 40,
+        h: 25,
+        type: "slideTop"
+    },
+    {
+        x: 670,
+        y: 3745,
+        w: 10,
+        h: 25,
+        type: "right"
+    },
+    {
+        x: 585,
+        y: 3755,
+        w: 180,
+        h: 10,
+        type: "bottom"
+    },
+    {
+        x: 531,
+        y: 3675,
+        w: 10,
+        h: 10,
+        type: "bottom"
+    },
+    {
+        x: 601,
+        y: 3730,
+        w: 150,
+        h: 25,
+        type: "top"
+    },
+    {
+        x: 679,
+        y: 3600,
+        w: 10,
+        h: 40,
+        type: "left"
+    },
+    {
+        x: 730,
+        y: 3650,
+        w: 10,
+        h: 50,
+        type: "left"
+    },
+    {
+        x: 730,
+        y: 3480,
+        w: 10,
+        h: 180,
+        type: "left"
+    },
+    {
+        x: 748,
+        y: 3532,
+        w: 10,
+        h: 285,
+        type: "right"
+    },
+    {
+        x: 705,
+        y: 3620,
+        w: 60,
+        h: 10,
+        type: "bottom"
+    },
+    {
+        x: 739,
+        y: 3675,
+        w: 28,
+        h: 10,
+        type: "bottom"
+    },
+    {
+        x: 700,
+        y: 3580,
+        w: 50,
+        h: 25,
+        type: "top"
+    },
+    {
+        x: 739,
+        y: 3385,
+        w: 25,
+        h: 25,
+        type: "top"
+    },
+    {
+        x: 659,
+        y: 3425,
+        w: 10,
+        h: 40,
+        type: "right"
+    },
+    {
+        x: 641,
+        y: 3425,
+        w: 10,
+        h: 40,
+        type: "left"
+    },
+    {
+        x: 650,
+        y: 3410,
+        w: 25,
+        h: 25,
+        type: "top"
+    },
+    {
+        x: 650,
+        y: 3450,
+        w: 25,
+        h: 20,
+        type: "bottom"
+    },
+    {
+        x: 620,
+        y: 3300,
+        w: 80,
+        h: 25,
+        type: "top"
+    },
+   
    
   ];
   
@@ -165,6 +334,9 @@ let player = {
     }
     else if(platform.type === "bottom"){
         fill('yellow')
+    }
+    else if(platform.type === "slideTop"){
+        fill('cyan')
     }
 
     rect(platform.x, platform.y, platform.w, platform.h);
@@ -228,6 +400,17 @@ let player = {
         platform.type === "bottom") {
       if (player.vy <= 0){
         player.vy = 0
+      }
+    }
+    if (player.x + player.w/2 > platform.x - platform.w/2 &&
+        player.x - player.w/2 < platform.x + platform.w/2 &&
+        player.y + player.h/2 > platform.y - platform.h/2 &&
+        player.y - player.h/2 < platform.y + platform.h/2 &&
+        platform.type === "slideTop") {
+      if (player.vy >= 0){
+        player.vx = 0
+        player.vy = 0
+        player.x = platform.x
       }
     }
   }
