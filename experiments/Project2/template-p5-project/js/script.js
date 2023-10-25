@@ -762,6 +762,104 @@ let player = {
         h: 25,
         type: "top"
     },
+    {
+        x: 2455,
+        y: 3760,
+        w: 10,
+        h: 500,
+        type: "left"
+    },
+    {
+        x: 2545,
+        y: 3760,
+        w: 10,
+        h: 500,
+        type: "right"
+    },
+    {
+        x: 2500,
+        y: 3500,
+        w: 100,
+        h: 25,
+        type: "top"
+    },
+    {
+        x: 3000,
+        y: 3950,
+        w: 1100,
+        h: 200,
+        type: "slowGrav"
+    },
+    {
+        x: 3775,
+        y: 3300,
+        w: 450,
+        h: 450,
+        type: "slowGrav"
+    },
+    {
+        x: 2780,
+        y: 3320,
+        w: 10,
+        h: 30,
+        type: "right"
+    },
+    {
+        x: 2820,
+        y: 3320,
+        w: 10,
+        h: 30,
+        type: "left"
+    },
+    {
+        x: 2800,
+        y: 3330,
+        w: 50,
+        h: 15,
+        type: "bottom"
+    },
+    {
+        x: 2800,
+        y: 3300,
+        w: 50,
+        h: 25,
+        type: "top"
+    },
+    {
+        x: 3055,
+        y: 3720,
+        w: 10,
+        h: 30,
+        type: "left"
+    },
+    {
+        x: 3145,
+        y: 3720,
+        w: 10,
+        h: 30,
+        type: "right"
+    },
+    {
+        x: 3100,
+        y: 3740,
+        w: 100,
+        h: 15,
+        type: "bottom"
+    },
+    {
+        x: 3100,
+        y: 3700,
+        w: 100,
+        h: 25,
+        type: "top"
+    },
+    {
+        x: 3750,
+        y: 3400,
+        w: 100,
+        h: 25,
+        type: "top"
+    },
    
    
   ];
@@ -808,6 +906,7 @@ let player = {
   
   function displayPlatform(platform) {
     push();
+    noStroke()
     if (platform.type === "top"){
         fill('red')
     }
