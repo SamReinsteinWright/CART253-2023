@@ -11,6 +11,7 @@ let charge = 1;
 let gravity = 0.1;
 let grounded = false;
 let jumped = false;
+let lowgrav = false;
 
 let lilBox = {
     x:100,
@@ -238,7 +239,7 @@ let player = {
     },
     {
         x: 739,
-        y: 3385,
+        y: 3380,
         w: 25,
         h: 25,
         type: "top"
@@ -259,7 +260,7 @@ let player = {
     },
     {
         x: 650,
-        y: 3410,
+        y: 3400,
         w: 25,
         h: 25,
         type: "top"
@@ -413,7 +414,7 @@ let player = {
     },
     {
         x: 130,
-        y: 2900,
+        y: 2895,
         w: 50,
         h: 25,
         type: "top"
@@ -441,7 +442,7 @@ let player = {
     },
     {
         x: 210,
-        y: 2900,
+        y: 2895,
         w: 50,
         h: 25,
         type: "top"
@@ -469,7 +470,7 @@ let player = {
     },
     {
         x: 310,
-        y: 2900,
+        y: 2895,
         w: 50,
         h: 25,
         type: "top"
@@ -497,7 +498,7 @@ let player = {
     },
     {
         x: 390,
-        y: 2900,
+        y: 2895,
         w: 50,
         h: 25,
         type: "top"
@@ -525,7 +526,7 @@ let player = {
     },
     {
         x: 540,
-        y: 2900,
+        y: 2895,
         w: 50,
         h: 25,
         type: "top"
@@ -553,7 +554,7 @@ let player = {
     },
     {
         x: 620,
-        y: 2900,
+        y: 2895,
         w: 50,
         h: 25,
         type: "top"
@@ -581,7 +582,7 @@ let player = {
     },
     {
         x: 820,
-        y: 2900,
+        y: 2895,
         w: 50,
         h: 25,
         type: "top"
@@ -609,7 +610,7 @@ let player = {
     },
     {
         x: 900,
-        y: 2900,
+        y: 2895,
         w: 50,
         h: 25,
         type: "top"
@@ -637,7 +638,7 @@ let player = {
     },
     {
         x: 1200,
-        y: 3000,
+        y: 2995,
         w: 50,
         h: 25,
         type: "top"
@@ -650,6 +651,13 @@ let player = {
         type: "left"
     },
     {
+        x: 1315,
+        y: 3820,
+        w: 10,
+        h: 30,
+        type: "right"
+    },
+    {
         x: 1270,
         y: 3835,
         w: 100,
@@ -658,8 +666,99 @@ let player = {
     },
     {
         x: 1270,
-        y: 3800,
+        y: 3795,
         w: 100,
+        h: 25,
+        type: "top"
+    },
+    {
+        x: 2550,
+        y: 3600,
+        w: 2000,
+        h: 500,
+        type: "slowGrav"
+    },
+    {
+        x: 1625,
+        y: 3815,
+        w: 10,
+        h: 30,
+        type: "left"
+    },
+    {
+        x: 1715,
+        y: 3815,
+        w: 10,
+        h: 30,
+        type: "right"
+    },
+    {
+        x: 1670,
+        y: 3835,
+        w: 100,
+        h: 15,
+        type: "bottom"
+    },
+    {
+        x: 1670,
+        y: 3795,
+        w: 100,
+        h: 25,
+        type: "top"
+    },
+    {
+        x: 1545,
+        y: 3850,
+        w: 10,
+        h: 30,
+        type: "right"
+    },
+    {
+        x: 1455,
+        y: 3850,
+        w: 10,
+        h: 30,
+        type: "left"
+    },
+    {
+        x: 1500,
+        y: 3870,
+        w: 100,
+        h: 15,
+        type: "bottom"
+    },
+    {
+        x: 1500,
+        y: 3825,
+        w: 100,
+        h: 25,
+        type: "top"
+    },
+    {
+        x: 1967.5,
+        y: 3720,
+        w: 10,
+        h: 30,
+        type: "left"
+    },
+    {
+        x: 2032.5,
+        y: 3720,
+        w: 10,
+        h: 30,
+        type: "right"
+    },
+    {
+        x: 2000,
+        y: 3740,
+        w: 75,
+        h: 15,
+        type: "bottom"
+    },
+    {
+        x: 2000,
+        y: 3700,
+        w: 75,
         h: 25,
         type: "top"
     },
@@ -704,6 +803,7 @@ let player = {
     checkCharging()
     checkGrounded()
     checkSides()
+    checkGrav()
   }
   
   function displayPlatform(platform) {
@@ -722,6 +822,9 @@ let player = {
     }
     else if(platform.type === "slideTop"){
         fill('cyan')
+    }
+    else if(platform.type === "slowGrav"){
+        fill(255,0,255,50)
     }
 
     rect(platform.x, platform.y, platform.w, platform.h);
@@ -756,7 +859,7 @@ let player = {
         player.y - player.h/2 < platform.y + platform.h/2 &&
         platform.type === "left" &&
         grounded === false) {
-      if (player.vx >= 0){
+      if (player.vx > 0){
         player.x = platform.x-15
         player.vx = 0
         if (player.vy < 0){
@@ -787,7 +890,7 @@ let player = {
         player.vy = 0
       }
     }
-    if (player.x + player.w/2 > platform.x - platform.w/2 &&
+    else if (player.x + player.w/2 > platform.x - platform.w/2 &&
         player.x - player.w/2 < platform.x + platform.w/2 &&
         player.y + player.h/2 > platform.y - platform.h/2 &&
         player.y - player.h/2 < platform.y + platform.h/2 &&
@@ -798,8 +901,18 @@ let player = {
         player.x = platform.x
       }
     }
+    else if (player.x + player.w/2 > platform.x - platform.w/2 &&
+        player.x - player.w/2 < platform.x + platform.w/2 &&
+        player.y + player.h/2 > platform.y - platform.h/2 &&
+        player.y - player.h/2 < platform.y + platform.h/2 &&
+        platform.type === "slowGrav") {
+    
+        lowgrav = true
+    }
+    
   }
   function keyReleased() {
+    if (lowgrav === false){
     jumped = true
     grounded = false
     let dx = mouseX - player.x;
@@ -808,6 +921,17 @@ let player = {
     dx = constrain(dx, -400, 400)
     player.vx = map(dx, -1000, 1000, -15, 15)*(charge/50);
     player.vy = map(dy, -500, 500, -10, 10)*(charge/50);
+    }
+    if (lowgrav === true && grounded === true){
+        jumped = true
+        grounded = false
+        let dx = mouseX - player.x;
+        let dy = mouseY - player.y;
+        dy = constrain(dy, -400,400)
+        dx = constrain(dx, -400, 400)
+        player.vx = map(dx, -1000, 1000, -15, 15)*(charge/50);
+        player.vy = map(dy, -500, 500, -10, 10)*(charge/50);
+        }
 }
 function checkGrounded(){
     if (grounded === true) {
@@ -818,6 +942,14 @@ function checkGrounded(){
         
       }
       if (grounded === false){
+        if (player.vx > 0 &&
+            player.vy > 0){
+            player.vx -= gravity
+        }
+        if (player.vx < 0 &&
+            player.vy > 0){
+            player.vx += gravity
+        }
         player.ay += gravity;
         player.vx += player.ax;
         player.vy += player.ay;
@@ -854,6 +986,15 @@ function checkCharging(){
           charge = 0
         }
     rect(player.x, player.y - 25, charge, lilBox.size.y)
+}
+function checkGrav(){
+    if (lowgrav === true){
+        gravity = 0.01
+    }
+    else{
+        gravity = 0.1
+    }
+    lowgrav = false
 }
 function mousePressed(){
     player.x = mouseX
