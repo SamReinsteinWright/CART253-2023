@@ -558,6 +558,111 @@ let player = {
         h: 25,
         type: "top"
     },
+    {
+        x: 840,
+        y: 2920,
+        w: 10,
+        h: 30,
+        type: "right"
+    },
+    {
+        x: 800,
+        y: 2920,
+        w: 10,
+        h: 30,
+        type: "left"
+    },
+    {
+        x: 820,
+        y: 2935,
+        w: 50,
+        h: 15,
+        type: "bottom"
+    },
+    {
+        x: 820,
+        y: 2900,
+        w: 50,
+        h: 25,
+        type: "top"
+    },
+    {
+        x: 880,
+        y: 2920,
+        w: 10,
+        h: 30,
+        type: "left"
+    },
+    {
+        x: 920,
+        y: 2920,
+        w: 10,
+        h: 30,
+        type: "right"
+    },
+    {
+        x: 900,
+        y: 2935,
+        w: 50,
+        h: 15,
+        type: "bottom"
+    },
+    {
+        x: 900,
+        y: 2900,
+        w: 50,
+        h: 25,
+        type: "top"
+    },
+    {
+        x: 1220,
+        y: 3020,
+        w: 10,
+        h: 30,
+        type: "right"
+    },
+    {
+        x: 1180,
+        y: 3020,
+        w: 10,
+        h: 30,
+        type: "left"
+    },
+    {
+        x: 1200,
+        y: 3035,
+        w: 50,
+        h: 15,
+        type: "bottom"
+    },
+    {
+        x: 1200,
+        y: 3000,
+        w: 50,
+        h: 25,
+        type: "top"
+    },
+    {
+        x: 1225,
+        y: 3820,
+        w: 10,
+        h: 30,
+        type: "left"
+    },
+    {
+        x: 1270,
+        y: 3835,
+        w: 100,
+        h: 15,
+        type: "bottom"
+    },
+    {
+        x: 1270,
+        y: 3800,
+        w: 100,
+        h: 25,
+        type: "top"
+    },
    
    
   ];
@@ -718,8 +823,8 @@ function checkGrounded(){
         player.vy += player.ay;
         player.x += player.vx;
         player.y += player.vy;
-        player.vx = constrain(player.vx,-50,50)
-        player.vy = constrain(player.vy, -50,50)
+        player.vx = constrain(player.vx,-17,17)
+        player.vy = constrain(player.vy, -17,17)
         
       }
 }
