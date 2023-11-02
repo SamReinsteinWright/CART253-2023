@@ -364,7 +364,7 @@ function indication() {
 
         });
         counter++
-    } while (counter < 15)
+    } while (counter < 12)
     // Draw the path
     for (let i = 0; i < path.length; i++) {
         let point = path[i];
