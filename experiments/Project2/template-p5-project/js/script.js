@@ -206,7 +206,7 @@ function checkInteraction(player, platform) {
         platform.type === "slipperyTop") {
         if (player.vy >= 0) {
             if (player.vx > 0) {
-                player.vx = player.vx - 0.075;
+                player.vx = player.vx - 0.06;
                 player.vy = 0;
                 player.ay = 0;
                 if (player.vx < 0.1) {
@@ -216,7 +216,7 @@ function checkInteraction(player, platform) {
 
 
             if (player.vx < 0) {
-                player.vx = player.vx + 0.075;
+                player.vx = player.vx + 0.06;
                 player.vy = 0;
                 player.ay = 0;
                 if (player.vx > -0.1) {

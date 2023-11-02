@@ -981,6 +981,63 @@ let platformData = [
         h: 15,
         type: "bottom"
     },
-
+    //p37
+    {
+        x: 3800,
+        y: 2530,
+        w: 100,
+        h: 25,
+        type: "slipperyTop"
+    },
+    {
+        x: 3845,
+        y: 2550,
+        w: 10,
+        h: 30,
+        type: "right"
+    },
+    {
+        x: 3755,
+        y: 2550,
+        w: 10,
+        h: 30,
+        type: "left"
+    },
+    {
+        x: 3800,
+        y: 2570,
+        w: 100,
+        h: 15,
+        type: "bottom"
+    },
+    //p38
+    {
+        x: 3700,
+        y: 2400,
+        w: 60,
+        h: 25,
+        type: "slipperyTop"
+    },
+    {
+        x: 3725,
+        y: 2420,
+        w: 10,
+        h: 30,
+        type: "right"
+    },
+    {
+        x: 3675,
+        y: 2420,
+        w: 10,
+        h: 30,
+        type: "left"
+    },
+    {
+        x: 3700,
+        y: 2440,
+        w: 60,
+        h: 15,
+        type: "bottom"
+    },
 
 ];
