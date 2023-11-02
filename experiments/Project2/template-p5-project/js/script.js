@@ -1,18 +1,34 @@
 /**
- * Title of Project
- * Author Name
+ * JumpThing 2: the JumpThingening
+ * Sam Reinstein Wright
  * 
- * This is a template. You must fill in the title, author, 
- * and this description to match your project!
+ * This is a faudian game, meaning it's one level with no checkpoints and the controls are pretty callous. Intended to be 
+ * something of a "rage game"
  */
 
 "use strict";
+//this is to charge the jump's power
 let charge = 1;
+//this dictates how fast the main character falls
 let gravity = 0.1;
+//makes sure that grav gets turned off when this thing is true
 let grounded = false;
+//extra variable if i need to check jumps
 let jumped = false;
+//low gravity setting
 let lowgrav = false;
 
+let indicatorBox = {
+    x: undefined,
+    y: undefined,
+    w: 10,
+    h: 10,
+    vx: 0,
+    vy: 0,
+    ax: 0,
+    ay: 0
+}
+//this is the inner workings of the charge meter 
 let lilBox = {
     x:100,
     y:100,
@@ -22,6 +38,7 @@ let lilBox = {
   
     }
 }
+//the player character's guts
 let player = {
     x: 500,
     y: 3999,
@@ -32,8 +49,9 @@ let player = {
     ax: 0,
     ay: 0
   };
-  
+  //all of my platforms
   let platformData = [
+    //P1
     {
       x: 110,
       y: 3890,
@@ -62,6 +80,7 @@ let player = {
       h: 25,
       type: "top"
     },
+    //p2
     {
         x: 68,
         y: 3735,
@@ -83,6 +102,7 @@ let player = {
         h: 25,
         type: "top"
     },
+    //p3
     {
         x: 184,
         y: 3670,
@@ -111,6 +131,7 @@ let player = {
         h: 25,
         type: "top"
     },
+    //p4
     {
         x: 384,
         y: 3670,
@@ -139,6 +160,7 @@ let player = {
         h: 25,
         type: "top"
     },
+    //p5
     {
         x: 500,
         y: 3650,
@@ -188,6 +210,7 @@ let player = {
         h: 25,
         type: "top"
     },
+    //p6
     {
         x: 679,
         y: 3600,
@@ -244,6 +267,7 @@ let player = {
         h: 25,
         type: "top"
     },
+    //p7
     {
         x: 659,
         y: 3425,
@@ -272,6 +296,7 @@ let player = {
         h: 20,
         type: "bottom"
     },
+    //p8
     {
         x: 655,
         y: 3265,
@@ -300,6 +325,7 @@ let player = {
         h: 25,
         type: "top"
     },
+    //p9
     {
         x: 375,
         y: 3320,
@@ -328,6 +354,7 @@ let player = {
         h: 25,
         type: "top"
     },
+    //p10
     {
         x: 235,
         y: 3475,
@@ -356,6 +383,7 @@ let player = {
         h: 25,
         type: "top"
     },
+    //p11
     {
         x: 35,
         y: 3370,
@@ -377,6 +405,7 @@ let player = {
         h: 25,
         type: "top"
     },
+    //p12
     {
         x: 10,
         y: 3180,
@@ -384,6 +413,7 @@ let player = {
         h: 25,
         type: "top"
     },
+    //p13
     {
         x: 10,
         y: 3030,
@@ -391,6 +421,7 @@ let player = {
         h: 25,
         type: "top"
     },
+    //p14
     {
         x: 110,
         y: 2920,
@@ -419,6 +450,7 @@ let player = {
         h: 25,
         type: "top"
     },
+    //p15
     {
         x: 230,
         y: 2920,
@@ -447,6 +479,7 @@ let player = {
         h: 25,
         type: "top"
     },
+    //p16
     {
         x: 290,
         y: 2920,
@@ -475,6 +508,7 @@ let player = {
         h: 25,
         type: "top"
     },
+    //p17
     {
         x: 370,
         y: 2920,
@@ -503,6 +537,7 @@ let player = {
         h: 25,
         type: "top"
     },
+    //p18
     {
         x: 560,
         y: 2920,
@@ -531,6 +566,7 @@ let player = {
         h: 25,
         type: "top"
     },
+    //p19
     {
         x: 600,
         y: 2920,
@@ -559,6 +595,7 @@ let player = {
         h: 25,
         type: "top"
     },
+    //p20
     {
         x: 840,
         y: 2920,
@@ -587,6 +624,7 @@ let player = {
         h: 25,
         type: "top"
     },
+    //p21
     {
         x: 880,
         y: 2920,
@@ -615,6 +653,7 @@ let player = {
         h: 25,
         type: "top"
     },
+    //p22
     {
         x: 1220,
         y: 3020,
@@ -643,6 +682,7 @@ let player = {
         h: 25,
         type: "top"
     },
+    //p23
     {
         x: 1225,
         y: 3820,
@@ -671,6 +711,7 @@ let player = {
         h: 25,
         type: "top"
     },
+    //p24(area)
     {
         x: 2550,
         y: 3600,
@@ -678,6 +719,7 @@ let player = {
         h: 500,
         type: "slowGrav"
     },
+    //p25
     {
         x: 1625,
         y: 3815,
@@ -706,6 +748,7 @@ let player = {
         h: 25,
         type: "top"
     },
+    //p26
     {
         x: 1545,
         y: 3850,
@@ -734,6 +777,7 @@ let player = {
         h: 25,
         type: "top"
     },
+    //p27
     {
         x: 1967.5,
         y: 3720,
@@ -762,6 +806,7 @@ let player = {
         h: 25,
         type: "top"
     },
+    //p28
     {
         x: 2455,
         y: 3760,
@@ -783,6 +828,7 @@ let player = {
         h: 25,
         type: "top"
     },
+    //p29(area)
     {
         x: 3000,
         y: 3950,
@@ -790,6 +836,7 @@ let player = {
         h: 200,
         type: "slowGrav"
     },
+    //p30(area)
     {
         x: 3775,
         y: 3300,
@@ -797,6 +844,7 @@ let player = {
         h: 450,
         type: "slowGrav"
     },
+    //p31
     {
         x: 2780,
         y: 3320,
@@ -825,6 +873,7 @@ let player = {
         h: 25,
         type: "top"
     },
+    //p32
     {
         x: 3055,
         y: 3720,
@@ -853,28 +902,140 @@ let player = {
         h: 25,
         type: "top"
     },
+    //p33
     {
         x: 3750,
+        y: 3420,
+        w: 10,
+        h: 30,
+        type: "left"
+    },
+    {
+        x: 3840,
+        y: 3420,
+        w: 10,
+        h: 30,
+        type: "right"
+    },
+    {
+        x: 3795,
+        y: 3440,
+        w: 100,
+        h: 15,
+        type: "bottom"
+    },
+    {
+        x: 3795,
         y: 3400,
         w: 100,
         h: 25,
         type: "top"
     },
+    //p34
+    {
+        x: 3870,
+        y: 3020,
+        w: 10,
+        h: 30,
+        type: "right"
+    },
+    {
+        x: 3830,
+        y: 3020,
+        w: 10,
+        h: 30,
+        type: "left"
+    },
+    {
+        x: 3850,
+        y: 3040,
+        w: 50,
+        h: 15,
+        type: "bottom"
+    },
+    {
+        x: 3850,
+        y: 3000,
+        w: 50,
+        h: 25,
+        type: "top"
+    },
+    //p35
+    {
+        x: 3675,
+        y: 2900,
+        w: 100,
+        h: 25,
+        type: "slipperyTop"
+    },
+    {
+        x: 3720,
+        y: 2915,
+        w: 10,
+        h: 30,
+        type: "right"
+    },
+    {
+        x: 3620,
+        y: 2840,
+        w: 10,
+        h: 100,
+        type: "right"
+    },
+    {
+        x: 3600,
+        y: 2780,
+        w: 50,
+        h: 25,
+        type: "slipperyTop"
+    },
+    {
+        x: 3580,
+        y: 2860,
+        w: 10,
+        h: 140,
+        type: "left"
+    },
+    {
+        x: 3650,
+        y: 2935,
+        w: 150,
+        h: 15,
+        type: "bottom"
+    },
+    //p36
+    {
+        x: 3850,
+        y: 2700,
+        w: 200,
+        h: 25,
+        type: "slipperyTop"
+    },
+    {
+        x: 3755,
+        y: 2720,
+        w: 10,
+        h: 30,
+        type: "left"
+    },
    
    
   ];
-  
+  //my platform array
   let platforms = [];
   
   function setup() {
+    //creates my canvas
     createCanvas(4000, 4000);
+    //sets all rectangle to be drawn from the center
     rectMode(CENTER);  
+    //creates all platforms in array
     for (let data of platformData) {
       let platform = createPlatform(data.x, data.y, data.w, data.h, data.type);
       platforms.push(platform);
     }
   }
-  
+  //the function that gets the data and sends to be created
   function createPlatform(x, y, w, h, type) {
     return {
       x: x,
@@ -885,25 +1046,28 @@ let player = {
       fill: [255,255,0]
     }
   }
-  
+  //the function that happens every tick
   function draw() {
+    //sets background colour after each tick
     background(0);
-
-
+    //colour of player
     fill(255)
+    //drawing player
     rect(player.x, player.y, player.w, player.h);
-    
+    //checks for interaction between the player and any given platform
     for (let platform of platforms) {
       checkInteraction(player, platform);  
       //movePlatform(platform);
+      //calling function to display platform
       displayPlatform(platform);
     }
+    //calls the functions that check for the base interaction of the game
     checkCharging()
     checkGrounded()
     checkSides()
     checkGrav()
   }
-  
+  //the function that decides the colour of each rectangle and that actually draws it
   function displayPlatform(platform) {
     push();
     noStroke()
@@ -925,6 +1089,9 @@ let player = {
     else if(platform.type === "slowGrav"){
         fill(255,0,255,50)
     }
+    else if(platform.type === "slipperyTop"){
+        fill('turquoise')
+    }
 
     rect(platform.x, platform.y, platform.w, platform.h);
     pop();
@@ -940,8 +1107,9 @@ let player = {
       platform.x = width;
     }
   }*/
-  
+  //checks if the player is intersecting with any other box
   function checkInteraction(player, platform) {
+    //top: makes sure player stays on the top of the platform
     if (player.x + player.w/2 > platform.x - platform.w/2 &&
         player.x - player.w/2 < platform.x + platform.w/2 &&
         player.y + player.h/2 > platform.y - platform.h/2 &&
@@ -952,6 +1120,7 @@ let player = {
         grounded = true
       }
     }
+    //left and right stops the player's x momentum and makes sure they dont go any further
     else if (player.x + player.w/2 > platform.x - platform.w/2 &&
         player.x - player.w/2 < platform.x + platform.w/2 &&
         player.y + player.h/2 > platform.y - platform.h/2 &&
@@ -980,6 +1149,7 @@ let player = {
                 }
               }
     }
+    //bottom: stops y momentum
     else if (player.x + player.w/2 > platform.x - platform.w/2 &&
         player.x - player.w/2 < platform.x + platform.w/2 &&
         player.y + player.h/2 > platform.y - platform.h/2 &&
@@ -989,6 +1159,7 @@ let player = {
         player.vy = 0
       }
     }
+    //makes sure if touched, they will teleport to the center and slide through
     else if (player.x + player.w/2 > platform.x - platform.w/2 &&
         player.x - player.w/2 < platform.x + platform.w/2 &&
         player.y + player.h/2 > platform.y - platform.h/2 &&
@@ -1000,6 +1171,7 @@ let player = {
         player.x = platform.x
       }
     }
+    //applies low gravity 
     else if (player.x + player.w/2 > platform.x - platform.w/2 &&
         player.x - player.w/2 < platform.x + platform.w/2 &&
         player.y + player.h/2 > platform.y - platform.h/2 &&
@@ -1008,8 +1180,42 @@ let player = {
     
         lowgrav = true
     }
+    //makes the player slip and slide if velocity is higher than 0.1    
+    if (player.x - player.w / 2 < platform.x + platform.w / 2 &&
+        player.x + player.w / 2 > platform.x - platform.w / 2 &&
+        player.y - player.h / 2 < platform.y + platform.h / 2 &&
+        player.y + player.h / 2 > platform.y - platform.h / 2 &&
+        platform.type === "slipperyTop") {
+        if (player.vy >= 0){
+            if (player.vx > 0){
+                player.vx = player.vx -0.05;
+                player.vy = 0;
+                player.ay = 0;
+            if (player.vx < 0.1) {
+                grounded = true;
+            }
+          }
+        
+          
+            if (player.vx < 0){
+                player.vx = player.vx +0.05;
+                player.vy = 0;
+                player.ay = 0;
+            if (player.vx > -0.1) {
+                grounded = true;
+            }
+          }
+            if (player.vx === 0) {
+                grounded = true;
+          }
+        
+          
+            player.y = platform.y - 24;
+            }
+        }
     
   }
+  //the jump
   function keyReleased() {
     if (lowgrav === false){
     jumped = true
@@ -1032,6 +1238,7 @@ let player = {
         player.vy = map(dy, -500, 500, -10, 10)*(charge/50);
         }
 }
+//checks if the player is grounded and dictates player velocity and momentum
 function checkGrounded(){
     if (grounded === true) {
       
@@ -1059,6 +1266,7 @@ function checkGrounded(){
         
       }
 }
+//checks if player is on the side of the canvas and bounces them
 function checkSides(){
     player.x = constrain(player.x, 0,width);
     player.y = constrain(player.y,0,height);
@@ -1075,10 +1283,13 @@ function checkSides(){
         player.y = height;
       }
 }
+//the function that allows charge to build if holding the w key
 function checkCharging(){
     if (keyIsDown(87)) {
         if (charge <= 100) {
           charge += 1;
+
+
         }
       }
       else {
@@ -1086,6 +1297,7 @@ function checkCharging(){
         }
     rect(player.x, player.y - 25, charge, lilBox.size.y)
 }
+//checks of lowgrav is true, if yes then it makes gravity lower lol
 function checkGrav(){
     if (lowgrav === true){
         gravity = 0.01
@@ -1095,6 +1307,7 @@ function checkGrav(){
     }
     lowgrav = false
 }
+//dev tool so i can test jumps
 function mousePressed(){
     player.x = mouseX
     player.y = mouseY
