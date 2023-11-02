@@ -17,17 +17,6 @@ let grounded = false;
 let jumped = false;
 //low gravity setting
 let lowgrav = false;
-
-let indicatorBox = {
-    x: undefined,
-    y: undefined,
-    w: 10,
-    h: 10,
-    vx: 0,
-    vy: 0,
-    ax: 0,
-    ay: 0
-}
 //this is the inner workings of the charge meter 
 let lilBox = {
     x:100,
@@ -1286,11 +1275,13 @@ function checkSides(){
 //the function that allows charge to build if holding the w key
 function checkCharging(){
     if (keyIsDown(87)) {
-        if (charge <= 100) {
+        if (charge < 100) {
           charge += 1;
-
-
+          indication()
         }
+        if (charge === 100) {
+            indication()
+          }
       }
       else {
           charge = 0
@@ -1311,6 +1302,57 @@ function checkGrav(){
 function mousePressed(){
     player.x = mouseX
     player.y = mouseY
+}
+
+function indication(){
+        let dx = mouseX - player.x;
+        let dy = mouseY - player.y;
+        dy = constrain(dy, -400,400)
+        dx = constrain(dx, -400, 400)
+        let vx = map(dx, -1000, 1000, -15, 15)*(charge/50);
+        let vy = map(dy, -500, 500, -10, 10)*(charge/50);
+        let ay = 0
+        let x = player.x
+        let y = player.y
+        let path = []
+        let keepDrawing = true
+        let counter = 0
+        do{
+            if (vx > 0 && vy > 0){
+                vx -= 0.1
+            }
+            if (vx < 0 && vy > 0){
+                vx += 0.1
+            }
+            ay += gravity
+            vy += ay
+            x += vx;
+            y += vy;
+            vx = constrain(player.vx,-17,17)
+            vy = constrain(player.vy, -17,17)
+
+            path.push({
+                x: x,
+                y: y
+
+            });
+            counter++
+        } while (counter < 100)
+         // Draw the path
+  for (let i = 0; i < path.length; i++) {
+    let point = path[i];
+    push();
+    rectMode(CENTER);
+    noStroke();
+    let alpha = map(i, 0, path.length, 255, 0);
+    fill(255, alpha);
+    rect(point.x, point.y, 2, 2);
+    pop();
+  }
+
+
+
+
 }
 
   
