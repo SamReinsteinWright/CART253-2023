@@ -1,5 +1,5 @@
 /**
- * JumpThing 2: the JumpThingening
+ * JumpThang
  * Sam Reinstein Wright
  * 
  * This is a faudian game, meaning it's one level with no checkpoints and the controls are pretty callous. Intended to be 
@@ -93,22 +93,22 @@ function displayPlatform(platform) {
         fill('red')
     }
     else if (platform.type === "left") {
-        fill('blue')
+        fill('brown')
     }
     else if (platform.type === "right") {
-        fill('blue')
+        fill('brown')
     }
     else if (platform.type === "bottom") {
-        fill('yellow')
+        fill(225, 173, 1)
     }
     else if (platform.type === "slideTop") {
-        fill('cyan')
+        fill('blue')
     }
     else if (platform.type === "slowGrav") {
         fill(255, 0, 255, 50)
     }
     else if (platform.type === "slipperyTop") {
-        fill('turquoise')
+        fill('cyan')
     }
 
     rect(platform.x, platform.y, platform.w, platform.h);
@@ -364,7 +364,7 @@ function indication() {
 
         });
         counter++
-    } while (counter < 12)
+    } while (counter < 15)
     // Draw the path
     for (let i = 0; i < path.length; i++) {
         let point = path[i];

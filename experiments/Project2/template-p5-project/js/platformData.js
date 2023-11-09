@@ -1039,5 +1039,112 @@ let platformData = [
         h: 15,
         type: "bottom"
     },
-
+    //p39
+    {
+        x: 3850,
+        y: 2250,
+        w: 100,
+        h: 25,
+        type: "slipperyTop"
+    },
+    {
+        x: 3805,
+        y: 2270,
+        w: 10,
+        h: 30,
+        type: "left"
+    },
+    {
+        x: 3895,
+        y: 2270,
+        w: 10,
+        h: 30,
+        type: "right"
+    },
+    {
+        x: 3850,
+        y: 2290,
+        w: 100,
+        h: 15,
+        type: "bottom"
+    },
+    //p40
+    {
+        x: 3870,
+        y: 2100,
+        w: 25,
+        h: 25,
+        type: "slipperyTop"
+    },
+    {
+        x: 3878,
+        y: 2120,
+        w: 10,
+        h: 30,
+        type: "right"
+    },
+    {
+        x: 3852.5,
+        y: 2040,
+        w: 10,
+        h: 100,
+        type: "right"
+    },
+    {
+        x: 3830,
+        y: 1985,
+        w: 50,
+        h: 25,
+        type: "slipperyTop"
+    },
+    {
+        x: 3810,
+        y: 2060,
+        w: 10,
+        h: 140,
+        type: "left"
+    },
+    {
+        x: 3845,
+        y: 2130,
+        w: 77.5,
+        h: 15,
+        type: "bottom"
+    },
+    //p41
+    {
+        x: 3930,
+        y: 1850,
+        w: 100,
+        h: 25,
+        type: "slipperyTop"
+    },
+    {
+        x: 3885,
+        y: 1870,
+        w: 10,
+        h: 30,
+        type: "left"
+    },
+    {
+        x: 3975,
+        y: 1870,
+        w: 10,
+        h: 30,
+        type: "right"
+    },
+    {
+        x: 3930,
+        y: 1880,
+        w: 100,
+        h: 15,
+        type: "bottom"
+    },
+    {
+        x: 3900,
+        y: 1700,
+        w: 50,
+        h: 25,
+        type: "slipperyTop"
+    },
 ];
