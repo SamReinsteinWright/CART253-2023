@@ -5,7 +5,10 @@
  * This is a faudian game, meaning it's one level with no checkpoints and the controls are pretty callous. Intended to be 
  * something of a "rage game"
  */
-
+//preload once
+//same image
+//one variablw with image
+//display image muliple times
 "use strict";
 //this is to charge the jump's power
 let charge = 1;
