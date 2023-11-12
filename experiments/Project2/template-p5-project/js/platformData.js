@@ -1,5 +1,29 @@
 //all of my platforms
 let platformData = [
+    //a1 (normalzone)
+    {
+        x: 750,
+        y: 3500,
+        w: 1500,
+        h: 1300,
+        type: "normal"
+    },
+    //a2 (low grav zone)
+    {
+        x: 3000,
+        y: 3500,
+        w: 2990,
+        h: 1000,
+        type: "lowGravity"
+    },
+    //a3 (icy zone)
+    {
+        x: 3500,
+        y: 2250,
+        w: 1400,
+        h: 1490,
+        type: "icy"
+    },
     //P1
     {
         x: 110,
@@ -1321,30 +1345,199 @@ let platformData = [
         h: 25,
         type: "slipperyTop"
     },
-    //a1 (normalzone)
     {
-        x: 750,
-        y: 3500,
-        w: 1500,
-        h: 1300,
-        type: "normal"
+        x: 2950,
+        y: 2970,
+        w: 10,
+        h: 30,
+        type: "right"
     },
-    //a2 (low grav zone)
     {
-        x: 3000,
-        y: 3500,
-        w: 2990,
-        h: 1000,
-        type: "lowGravity"
+        x: 2910,
+        y: 2970,
+        w: 10,
+        h: 30,
+        type: "left"
     },
-    //a3 (icy zone)
     {
-        x: 3500,
-        y: 2250,
-        w: 1400,
-        h: 1490,
-        type: "icy"
+        x: 2930,
+        y: 2990,
+        w: 50,
+        h: 15,
+        type: "bottom"
     },
-
-
+    //p48
+    {
+        x: 2860,
+        y: 2830,
+        w: 50,
+        h: 25,
+        type: "slipperyTop"
+    },
+    {
+        x: 2880,
+        y: 2850,
+        w: 10,
+        h: 30,
+        type: "right"
+    },
+    {
+        x: 2840,
+        y: 2850,
+        w: 10,
+        h: 30,
+        type: "left"
+    },
+    {
+        x: 2860,
+        y: 2870,
+        w: 50,
+        h: 15,
+        type: "bottom"
+    },
+    //p49
+    {
+        x: 3200,
+        y: 2430,
+        w: 100,
+        h: 25,
+        type: "slipperyTop"
+    },
+    {
+        x: 3155,
+        y: 2450,
+        w: 10,
+        h: 30,
+        type: "left"
+    },
+    {
+        x: 3245,
+        y: 2450,
+        w: 10,
+        h: 30,
+        type: "right"
+    },
+    {
+        x: 3200,
+        y: 2470,
+        w: 100,
+        h: 15,
+        type: "bottom"
+    },
+    //p50
+    {
+        x: 3300,
+        y: 2300,
+        w: 50,
+        h: 25,
+        type: "slipperyTop"
+    },
+    {
+        x: 3280,
+        y: 2320,
+        w: 10,
+        h: 30,
+        type: "left"
+    },
+    {
+        x: 3320,
+        y: 2320,
+        w: 10,
+        h: 30,
+        type: "right"
+    },
+    {
+        x: 3300,
+        y: 2340,
+        w: 50,
+        h: 15,
+        type: "bottom"
+    },
+    //p51
+    {
+        x: 3050,
+        y: 2050,
+        w: 50,
+        h: 25,
+        type: "slipperyTop"
+    },
+    {
+        x: 3070,
+        y: 2070,
+        w: 10,
+        h: 30,
+        type: "right"
+    },
+    {
+        x: 3030,
+        y: 2070,
+        w: 10,
+        h: 30,
+        type: "left"
+    },
+    {
+        x: 3050,
+        y: 2090,
+        w: 50,
+        h: 15,
+        type: "bottom"
+    },
+    //p52
+    {
+        x: 3130,
+        y: 1890,
+        w: 50,
+        h: 25,
+        type: "slipperyTop"
+    },
+    {
+        x: 3150,
+        y: 1910,
+        w: 10,
+        h: 30,
+        type: "right"
+    },
+    {
+        x: 3110,
+        y: 1910,
+        w: 10,
+        h: 30,
+        type: "left"
+    },
+    {
+        x: 3130,
+        y: 1930,
+        w: 50,
+        h: 15,
+        type: "bottom"
+    },
+    //p53
+    {
+        x: 3185,
+        y: 1725,
+        w: 50,
+        h: 25,
+        type: "slipperyTop"
+    },
+    {
+        x: 3205,
+        y: 1745,
+        w: 10,
+        h: 30,
+        type: "right"
+    },
+    {
+        x: 3165,
+        y: 1745,
+        w: 10,
+        h: 30,
+        type: "left"
+    },
+    {
+        x: 3185,
+        y: 1765,
+        w: 50,
+        h: 15,
+        type: "bottom"
+    },
 ];
