@@ -1321,4 +1321,30 @@ let platformData = [
         h: 25,
         type: "slipperyTop"
     },
+    //a1 (normalzone)
+    {
+        x: 750,
+        y: 3500,
+        w: 1500,
+        h: 1300,
+        type: "normal"
+    },
+    //a2 (low grav zone)
+    {
+        x: 3000,
+        y: 3500,
+        w: 2990,
+        h: 1000,
+        type: "lowGravity"
+    },
+    //a3 (icy zone)
+    {
+        x: 3500,
+        y: 2250,
+        w: 1400,
+        h: 1490,
+        type: "icy"
+    },
+
+
 ];

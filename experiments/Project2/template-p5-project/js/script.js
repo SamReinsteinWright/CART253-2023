@@ -41,9 +41,24 @@ let player = {
     ax: 0,
     ay: 0
 };
+let normalSoundtrack;
+let lowGravSoundtrack;
+let icySoundtrack;
+let normalVolume = 1
+let lowGravVolume = 0
+let icyVolume = 0
+let normal
+let icy
+let lowGravity
 
 //my platform array
 let platforms = [];
+function preload() {
+    icySoundtrack = loadSound('assets/sounds/jumpIce.wav')
+    lowGravSoundtrack = loadSound('assets/sounds/jumpLowGrav.wav')
+    normalSoundtrack = loadSound('assets/sounds/jump.wav')
+}
+
 
 function setup() {
     //creates my canvas
@@ -55,6 +70,7 @@ function setup() {
         let platform = createPlatform(data.x, data.y, data.w, data.h, data.type);
         platforms.push(platform);
     }
+    backgroundMusic()
 }
 //the function that gets the data and sends to be created
 function createPlatform(x, y, w, h, type) {
@@ -87,6 +103,7 @@ function draw() {
     checkGrounded()
     checkSides()
     checkGrav()
+    checkSoundtrack()
 }
 //the function that decides the colour of each rectangle and that actually draws it
 function displayPlatform(platform) {
@@ -112,6 +129,15 @@ function displayPlatform(platform) {
     }
     else if (platform.type === "slipperyTop") {
         fill('cyan')
+    }
+    else if (platform.type === "normal") {
+        fill(255, 0, 0, 30)
+    }
+    else if (platform.type === "lowGravity") {
+        fill(255, 0, 255, 30)
+    }
+    else if (platform.type === "icy") {
+        fill(0, 255, 255, 30)
     }
 
     rect(platform.x, platform.y, platform.w, platform.h);
@@ -234,6 +260,36 @@ function checkInteraction(player, platform) {
             player.y = platform.y - 24;
         }
     }
+    else if (player.x + player.w / 2 > platform.x - platform.w / 2 &&
+        player.x - player.w / 2 < platform.x + platform.w / 2 &&
+        player.y + player.h / 2 > platform.y - platform.h / 2 &&
+        player.y - player.h / 2 < platform.y + platform.h / 2 &&
+        platform.type === "normal") {
+
+        normal = true
+        lowGravity = false
+        icy = false
+    }
+    else if (player.x + player.w / 2 > platform.x - platform.w / 2 &&
+        player.x - player.w / 2 < platform.x + platform.w / 2 &&
+        player.y + player.h / 2 > platform.y - platform.h / 2 &&
+        player.y - player.h / 2 < platform.y + platform.h / 2 &&
+        platform.type === "lowGravity") {
+
+        normal = false
+        lowGravity = true
+        icy = false
+    }
+    else if (player.x + player.w / 2 > platform.x - platform.w / 2 &&
+        player.x - player.w / 2 < platform.x + platform.w / 2 &&
+        player.y + player.h / 2 > platform.y - platform.h / 2 &&
+        player.y - player.h / 2 < platform.y + platform.h / 2 &&
+        platform.type === "icy") {
+
+        normal = false
+        lowGravity = false
+        icy = true
+    }
 
 }
 //the jump
@@ -320,6 +376,11 @@ function checkCharging() {
     }
     rect(player.x, player.y - 25, charge, lilBox.size.y)
 }
+function keyIsDown() {
+    if (!normalSoundtrack.isPlaying()) {
+        normalSoundtrack.play()
+    }
+}
 //checks of lowgrav is true, if yes then it makes gravity lower lol
 function checkGrav() {
     if (lowgrav === true) {
@@ -383,5 +444,55 @@ function indication() {
 
 
 
+}
+function backgroundMusic() {
+    normalSoundtrack.play()
+    normalSoundtrack.loop()
+    normalSoundtrack.setVolume(normalVolume)
+    icySoundtrack.play()
+    icySoundtrack.loop()
+    icySoundtrack.setVolume(icyVolume)
+    lowGravSoundtrack.play()
+    lowGravSoundtrack.loop()
+    lowGravSoundtrack.setVolume(lowGravVolume)
+    userStartAudio()
+}
+function checkSoundtrack() {
+    if (normal) {
+        if (icyVolume > 0) {
+            icyVolume -= 0.001
+        }
+        if (lowGravVolume > 0) {
+            lowGravVolume -= 0.001
+        }
+        if (normalVolume < 1) {
+            normalVolume += 0.001
+        }
+    }
+    if (lowGravity) {
+        if (icyVolume > 0) {
+            icyVolume -= 0.001
+        }
+        if (lowGravVolume < 1) {
+            lowGravVolume += 0.001
+        }
+        if (normalVolume > 0) {
+            normalVolume -= 0.001
+        }
+    }
+    if (icy) {
+        if (icyVolume < 1) {
+            icyVolume += 0.001
+        }
+        if (lowGravVolume > 0) {
+            lowGravVolume -= 0.001
+        }
+        if (normalVolume > 0) {
+            normalVolume -= 0.001
+        }
+    }
+    normalSoundtrack.setVolume(normalVolume)
+    icySoundtrack.setVolume(icyVolume)
+    lowGravSoundtrack.setVolume(lowGravVolume)
 }
 
