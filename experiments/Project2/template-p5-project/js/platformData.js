@@ -24,6 +24,13 @@ let platformData = [
         h: 1490,
         type: "icy"
     },
+    {
+        x: 3500,
+        y: 1000,
+        w: 1000,
+        h: 1000,
+        type: "bouncy"
+    },
     //P1
     {
         x: 110,
@@ -1539,5 +1546,296 @@ let platformData = [
         w: 50,
         h: 15,
         type: "bottom"
+    },
+    //p54
+    {
+        x: 3450,
+        y: 1550,
+        w: 50,
+        h: 25,
+        type: "top"
+    },
+    {
+        x: 3430,
+        y: 1570,
+        w: 10,
+        h: 30,
+        type: "left"
+    },
+    {
+        x: 3470,
+        y: 1570,
+        w: 10,
+        h: 30,
+        type: "right"
+    },
+    {
+        x: 3450,
+        y: 1590,
+        w: 50,
+        h: 15,
+        type: "bottom"
+    },
+    //p55
+    {
+        x: 3550,
+        y: 1400,
+        w: 50,
+        h: 25,
+        type: "top"
+    },
+    {
+        x: 3530,
+        y: 1420,
+        w: 10,
+        h: 30,
+        type: "left"
+    },
+    {
+        x: 3570,
+        y: 1420,
+        w: 10,
+        h: 30,
+        type: "right"
+    },
+    {
+        x: 3550,
+        y: 1440,
+        w: 50,
+        h: 15,
+        type: "bottom"
+    },
+    //p56
+    {
+        x: 3770,
+        y: 1400,
+        w: 50,
+        h: 25,
+        type: "bouncyTop"
+    },
+    {
+        x: 3750,
+        y: 1420,
+        w: 10,
+        h: 30,
+        type: "bouncyLeft"
+    },
+    {
+        x: 3790,
+        y: 1420,
+        w: 10,
+        h: 30,
+        type: "bouncyRight"
+    },
+    {
+        x: 3770,
+        y: 1440,
+        w: 50,
+        h: 15,
+        type: "bouncyBottom"
+    },
+    //p57
+    {
+        x: 3950,
+        y: 1300,
+        w: 100,
+        h: 25,
+        type: "top"
+    },
+    {
+        x: 3905,
+        y: 1320,
+        w: 10,
+        h: 30,
+        type: "left"
+    },
+    {
+        x: 3950,
+        y: 1340,
+        w: 100,
+        h: 15,
+        type: "bottom"
+    },
+    //p58
+    {
+        x: 3987.5,
+        y: 1120,
+        w: 25,
+        h: 25,
+        type: "top"
+    },
+    {
+        x: 3970,
+        y: 1157.5,
+        w: 10,
+        h: 80,
+        type: "bouncyLeft"
+    },
+    {
+        x: 3987.5,
+        y: 1190,
+        w: 25,
+        h: 15,
+        type: "bottom"
+    },
+    //p59
+    {
+        x: 3850,
+        y: 1100,
+        w: 50,
+        h: 25,
+        type: "top"
+    },
+    {
+        x: 3871,
+        y: 1125,
+        w: 10,
+        h: 50,
+        type: "bouncyRight"
+    },
+    {
+        x: 3829,
+        y: 1125,
+        w: 10,
+        h: 50,
+        type: "bouncyLeft"
+    },
+    {
+        x: 3850,
+        y: 1150,
+        w: 50,
+        h: 15,
+        type: "bouncyBottom"
+    },
+    //p60
+    {
+        x: 3650,
+        y: 1140,
+        w: 50,
+        h: 30,
+        type: "bouncyTop"
+    },
+    {
+        x: 3630,
+        y: 1170,
+        w: 10,
+        h: 30,
+        type: "bouncyLeft"
+    },
+    {
+        x: 3670,
+        y: 1170,
+        w: 10,
+        h: 30,
+        type: "bouncyRight"
+    },
+    {
+        x: 3650,
+        y: 1190,
+        w: 50,
+        h: 15,
+        type: "bouncyBottom"
+    },
+    //p61
+    {
+        x: 3450,
+        y: 1000,
+        w: 50,
+        h: 25,
+        type: "top"
+    },
+    {
+        x: 3470,
+        y: 1020,
+        w: 10,
+        h: 30,
+        type: "right"
+    },
+    {
+        x: 3430,
+        y: 1020,
+        w: 10,
+        h: 30,
+        type: "left"
+    },
+    {
+        x: 3450,
+        y: 1040,
+        w: 50,
+        h: 15,
+        type: "bottom"
+    },
+    //p62
+    {
+        x: 3850,
+        y: 850,
+        w: 50,
+        h: 25,
+        type: "top"
+    },
+    {
+        x: 3830,
+        y: 870,
+        w: 10,
+        h: 30,
+        type: "right"
+    },
+    {
+        x: 3870,
+        y: 870,
+        w: 10,
+        h: 30,
+        type: "left"
+    },
+    {
+        x: 3850,
+        y: 890,
+        w: 50,
+        h: 15,
+        type: "bottom"
+    },
+    //p63
+    {
+        x: 3450,
+        y: 700,
+        w: 50,
+        h: 25,
+        type: "top"
+    },
+    {
+        x: 3430,
+        y: 720,
+        w: 10,
+        h: 30,
+        type: "right"
+    },
+    {
+        x: 3470,
+        y: 720,
+        w: 10,
+        h: 30,
+        type: "left"
+    },
+    {
+        x: 3450,
+        y: 740,
+        w: 50,
+        h: 15,
+        type: "bottom"
+    },
+    //p64
+    {
+        x: 3300,
+        y: 550,
+        w: 10,
+        h: 47.2,
+        type: "bouncyLeft"
+    },
+    {
+        x: 3320,
+        y: 580,
+        w: 50,
+        h: 15,
+        type: "bouncyBottom"
     },
 ];

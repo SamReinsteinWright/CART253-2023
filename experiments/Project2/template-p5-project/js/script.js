@@ -41,22 +41,47 @@ let player = {
     ax: 0,
     ay: 0
 };
+//SOUND EXERCISE (PART 1) --- OPEN
+/* I am making an adaptive soundtrack 
+using many different songs being played
+at the same time at differing volumes 
+to make the sound dynamically change
+as one progresses through the game. 
+-------------------------------------
+These are the variables I use to 
+keep track of the individual song 
+versions' different parameters
+such as: the song itself, the volume,
+and where to begin a transition.
+*/
+//the songs
 let normalSoundtrack;
 let lowGravSoundtrack;
 let icySoundtrack;
+let bounceSoundtrack;
+//the volume 
 let normalVolume = 1
 let lowGravVolume = 0
 let icyVolume = 0
+let bounceVolume = 0
+//the area
+let bounce
 let normal
 let icy
 let lowGravity
+//SOUND EXERCISE (PART 1) --- CLOSE
 
 //my platform array
 let platforms = [];
+
 function preload() {
+    //SOUND EXERCISE (PART 2) --- OPEN
+    // Here is where I load the music
     icySoundtrack = loadSound('assets/sounds/jumpIce.wav')
     lowGravSoundtrack = loadSound('assets/sounds/jumpLowGrav.wav')
     normalSoundtrack = loadSound('assets/sounds/jump.wav')
+    bounceSoundtrack = loadSound('assets/sounds/jumpBounce.wav')
+    //SOUND EXERCISE (PART 2) --- CLOSE
 }
 
 
@@ -70,7 +95,10 @@ function setup() {
         let platform = createPlatform(data.x, data.y, data.w, data.h, data.type);
         platforms.push(platform);
     }
+    //SOUND EXERCISE (PART 3) --- OPEN
+    //here I call the function that plays the songs
     backgroundMusic()
+    //SOUND EXERCISE (PART 3) --- CLOSE
 }
 //the function that gets the data and sends to be created
 function createPlatform(x, y, w, h, type) {
@@ -103,7 +131,11 @@ function draw() {
     checkGrounded()
     checkSides()
     checkGrav()
+
+    //SOUND EXERCISE (PART 4) --- OPEN 
+    //here i call the function that checks where the character is and controls the sound
     checkSoundtrack()
+    //SOUND EXERCISE (PART 4) --- CLOSE
 }
 //the function that decides the colour of each rectangle and that actually draws it
 function displayPlatform(platform) {
@@ -138,6 +170,21 @@ function displayPlatform(platform) {
     }
     else if (platform.type === "icy") {
         fill(0, 255, 255, 30)
+    }
+    else if (platform.type === "bouncyTop") {
+        fill(251, 72, 196)
+    }
+    else if (platform.type === "bouncyRight") {
+        fill(251, 72, 196)
+    }
+    else if (platform.type === "bouncyLeft") {
+        fill(251, 72, 196)
+    }
+    else if (platform.type === "bouncyBottom") {
+        fill(251, 72, 196)
+    }
+    else if (platform.type === "bouncy") {
+        fill(251, 72, 196, 30)
     }
 
     rect(platform.x, platform.y, platform.w, platform.h);
@@ -260,6 +307,14 @@ function checkInteraction(player, platform) {
             player.y = platform.y - 24;
         }
     }
+    //SOUND EXERCISE (PART 5) --- OPEN
+    /*These are the collision detection codes 
+    for the different sound zones. they check 
+    whether or not the player is in said zone
+    and changes the zone type in order to 
+    indicate which music to swap to.
+    */
+    //this is for the normal zone
     else if (player.x + player.w / 2 > platform.x - platform.w / 2 &&
         player.x - player.w / 2 < platform.x + platform.w / 2 &&
         player.y + player.h / 2 > platform.y - platform.h / 2 &&
@@ -269,7 +324,9 @@ function checkInteraction(player, platform) {
         normal = true
         lowGravity = false
         icy = false
+        bounce = false
     }
+    //this is for the low grav zone
     else if (player.x + player.w / 2 > platform.x - platform.w / 2 &&
         player.x - player.w / 2 < platform.x + platform.w / 2 &&
         player.y + player.h / 2 > platform.y - platform.h / 2 &&
@@ -279,7 +336,9 @@ function checkInteraction(player, platform) {
         normal = false
         lowGravity = true
         icy = false
+        bounce = false
     }
+    //this is for the icy zone
     else if (player.x + player.w / 2 > platform.x - platform.w / 2 &&
         player.x - player.w / 2 < platform.x + platform.w / 2 &&
         player.y + player.h / 2 > platform.y - platform.h / 2 &&
@@ -289,7 +348,67 @@ function checkInteraction(player, platform) {
         normal = false
         lowGravity = false
         icy = true
+        bounce = false
     }
+    //this is for the bouncy zone
+    else if (player.x + player.w / 2 > platform.x - platform.w / 2 &&
+        player.x - player.w / 2 < platform.x + platform.w / 2 &&
+        player.y + player.h / 2 > platform.y - platform.h / 2 &&
+        player.y - player.h / 2 < platform.y + platform.h / 2 &&
+        platform.type === "bouncy") {
+        bounce = true
+        normal = false
+        icy = false
+        lowGravity = false
+    }
+    //SOUND EXERCISE (PART 5) --- CLOSE
+    else if (player.x + player.w / 2 > platform.x - platform.w / 2 &&
+        player.x - player.w / 2 < platform.x + platform.w / 2 &&
+        player.y + player.h / 2 > platform.y - platform.h / 2 &&
+        player.y - player.h / 2 < platform.y + platform.h / 2 &&
+        platform.type === "bouncyTop") {
+        if (player.vy >= 0) {
+
+            player.ay = 0
+            player.vy = -player.vy
+        }
+
+
+    }
+    else if (player.x + player.w / 2 > platform.x - platform.w / 2 &&
+        player.x - player.w / 2 < platform.x + platform.w / 2 &&
+        player.y + player.h / 2 > platform.y - platform.h / 2 &&
+        player.y - player.h / 2 < platform.y + platform.h / 2 &&
+        platform.type === "bouncyRight" &&
+        grounded === false) {
+        if (player.vx <= 0) {
+            player.vx = - player.vx
+            player.ay = 0
+        }
+    }
+    else if (player.x + player.w / 2 > platform.x - platform.w / 2 &&
+        player.x - player.w / 2 < platform.x + platform.w / 2 &&
+        player.y + player.h / 2 > platform.y - platform.h / 2 &&
+        player.y - player.h / 2 < platform.y + platform.h / 2 &&
+        platform.type === "bouncyLeft" &&
+        grounded === false) {
+        if (player.vx >= 0) {
+            player.vx = - player.vx
+            player.ay = 0
+        }
+    }
+    else if (player.x + player.w / 2 > platform.x - platform.w / 2 &&
+        player.x - player.w / 2 < platform.x + platform.w / 2 &&
+        player.y + player.h / 2 > platform.y - platform.h / 2 &&
+        player.y - player.h / 2 < platform.y + platform.h / 2 &&
+        platform.type === "bouncyBottom") {
+        if (player.vy <= 0) {
+            player.vy = -player.vy
+            player.ay = 0
+        }
+    }
+
+
 
 }
 //the jump
@@ -325,21 +444,27 @@ function checkGrounded() {
 
     }
     if (grounded === false) {
-        if (player.vx > 0 &&
-            player.vy > 0) {
-            player.vx -= gravity
-        }
-        if (player.vx < 0 &&
-            player.vy > 0) {
-            player.vx += gravity
+        if (icy) {
+            if (player.vx >= 0) {
+                player.vx -= 0.065
+            }
+            if (player.vx <= 0) {
+                player.vx += 0.065
+            }
         }
         player.ay += gravity;
         player.vx += player.ax;
         player.vy += player.ay;
         player.x += player.vx;
         player.y += player.vy;
-        player.vx = constrain(player.vx, -17, 17)
-        player.vy = constrain(player.vy, -17, 17)
+        if (!bounce) {
+            player.vx = constrain(player.vx, -17, 17)
+            player.vy = constrain(player.vy, -17, 17)
+        }
+        if (bounce) {
+            player.vx = constrain(player.vx, -30, 30)
+            player.vy = constrain(player.vy, -30, 30)
+        }
 
     }
 }
@@ -392,10 +517,27 @@ function checkGrav() {
     lowgrav = false
 }
 //dev tool so i can test jumps
+
+//SOUND EXERCISE (PART 6) --- OPEN
+/*This is for any dev to use in order 
+to teleport the player to the mouse 
+location on click to check specific 
+jumps or to hear the sound shift without 
+playing the whole game. 
+----------------------------------------
+If you click and the player character was
+not on a red platform then the character 
+will begin to fall. SO if the character is 
+falling, click such that they will land on 
+a red platform. To get out of this immobile0
+state, just press w. 
+*/
 function mousePressed() {
     player.x = mouseX
     player.y = mouseY
 }
+//SOUND EXERCISE (PART 6) --- CLOSE
+
 //this makes it so there's an indicator where ur mouse is
 function indication() {
     let dx = mouseX - player.x;
@@ -410,12 +552,6 @@ function indication() {
     let path = []
     let counter = 0
     do {
-        if (vx > 0 && vy > 0) {
-            vx -= gravity
-        }
-        if (vx < 0 && vy > 0) {
-            vx += gravity
-        }
         ay += gravity
         vy += ay
         x += vx;
@@ -445,6 +581,11 @@ function indication() {
 
 
 }
+//SOUND EXERCISE (PART 7) --- OPEN
+/*These two functions are used to 
+set and check the songs. 
+*/
+//This one begins playing the music at the volume indicated by the variable
 function backgroundMusic() {
     normalSoundtrack.play()
     normalSoundtrack.loop()
@@ -455,20 +596,34 @@ function backgroundMusic() {
     lowGravSoundtrack.play()
     lowGravSoundtrack.loop()
     lowGravSoundtrack.setVolume(lowGravVolume)
+    bounceSoundtrack.play()
+    bounceSoundtrack.loop()
+    bounceSoundtrack.setVolume(bounceVolume)
     userStartAudio()
 }
+//this function checks what area the player is in and slowly fades out all other music of other areas while fading in that areas music
 function checkSoundtrack() {
+    //this checks the area
     if (normal) {
+        //this checks which area's music is playing and slowly reduces the volume
+        //icy
         if (icyVolume > 0) {
             icyVolume -= 0.001
         }
+        //low grav
         if (lowGravVolume > 0) {
             lowGravVolume -= 0.001
         }
+        //this increases the normal areas volume
         if (normalVolume < 1) {
             normalVolume += 0.001
         }
+        //bouncy
+        if (bounceVolume > 0) {
+            bounceVolume -= 0.001
+        }
     }
+    //the rest are th eexact same as the one above exept they check different areas
     if (lowGravity) {
         if (icyVolume > 0) {
             icyVolume -= 0.001
@@ -478,6 +633,9 @@ function checkSoundtrack() {
         }
         if (normalVolume > 0) {
             normalVolume -= 0.001
+        }
+        if (bounceVolume > 0) {
+            bounceVolume -= 0.001
         }
     }
     if (icy) {
@@ -490,9 +648,28 @@ function checkSoundtrack() {
         if (normalVolume > 0) {
             normalVolume -= 0.001
         }
+        if (bounceVolume > 0) {
+            bounceVolume -= 0.001
+        }
     }
+    if (bounce) {
+        if (bounceVolume < 1) {
+            bounceVolume += 0.001
+        }
+        if (lowGravVolume > 0) {
+            lowGravVolume -= 0.001
+        }
+        if (normalVolume > 0) {
+            normalVolume -= 0.001
+        }
+        if (icyVolume > 0) {
+            icyVolume -= 0.001
+        }
+    }
+    //this constantly updates the volume of each song
     normalSoundtrack.setVolume(normalVolume)
     icySoundtrack.setVolume(icyVolume)
     lowGravSoundtrack.setVolume(lowGravVolume)
+    bounceSoundtrack.setVolume(bounceVolume)
 }
-
+//SOUND EXERCISE (PART 7) --- CLOSE
