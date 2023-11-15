@@ -73,6 +73,7 @@ let lowGravity
 
 //my platform array
 let platforms = [];
+let dotCount = 15
 
 function preload() {
     //SOUND EXERCISE (PART 2) --- OPEN
@@ -551,6 +552,12 @@ function indication() {
     let y = player.y
     let path = []
     let counter = 0
+    if (bounce) {
+        dotCount = 9 * (charge / 50)
+    }
+    if (!bounce) {
+        dotCount = 15
+    }
     do {
         ay += gravity
         vy += ay
@@ -564,7 +571,7 @@ function indication() {
 
         });
         counter++
-    } while (counter < 15)
+    } while (counter < dotCount)
     // Draw the path
     for (let i = 0; i < path.length; i++) {
         let point = path[i];
