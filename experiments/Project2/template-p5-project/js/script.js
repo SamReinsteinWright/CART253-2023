@@ -74,8 +74,14 @@ let lowGravity
 //my platform array
 let platforms = [];
 let dotCount = 15
+let arrow
+let arrowArc
+let mediumFlower
 
 function preload() {
+    arrow = loadImage('assets/images/arrow.gif')
+    arrowArc = loadImage('assets/images/Project2ArcArrowGif.gif')
+    mediumFlower = loadImage('assets/images/Project2MediumPlatformFlower.gif')
     //SOUND EXERCISE (PART 2) --- OPEN
     // Here is where I load the music
     icySoundtrack = loadSound('assets/sounds/jumpIce.wav')
@@ -99,6 +105,7 @@ function setup() {
     //SOUND EXERCISE (PART 3) --- OPEN
     //here I call the function that plays the songs
     backgroundMusic()
+
     //SOUND EXERCISE (PART 3) --- CLOSE
 }
 //the function that gets the data and sends to be created
@@ -127,11 +134,30 @@ function draw() {
         //calling function to display platform
         displayPlatform(platform);
     }
+    for (let i = 0; i < arrowData.length; i++) {
+        push();
+        imageMode(CENTER);
+        translate(arrowData[i].x, arrowData[i].y);
+        angleMode(DEGREES);
+        rotate(arrowData[i].rotation);
+        if (arrowData[i].type === "straight") {
+            image(arrow, 0, 0, 50, 25);
+        }
+        if (arrowData[i].type === "arc") {
+            image(arrowArc, 0, 0, 50, 50);
+        }
+        if (arrowData[i].type === "mFlower") {
+            image(mediumFlower, 0, 0, arrowData[i].w, arrowData[i].h);
+        }
+
+        pop();
+    }
     //calls the functions that check for the base interaction of the game
     checkCharging()
     checkGrounded()
     checkSides()
     checkGrav()
+
 
     //SOUND EXERCISE (PART 4) --- OPEN 
     //here i call the function that checks where the character is and controls the sound
@@ -283,7 +309,7 @@ function checkInteraction(player, platform) {
         platform.type === "slipperyTop") {
         if (player.vy >= 0) {
             if (player.vx > 0) {
-                player.vx = player.vx - 0.06;
+                player.vx = player.vx - 0.01;
                 player.vy = 0;
                 player.ay = 0;
                 if (player.vx < 0.1) {
@@ -293,7 +319,7 @@ function checkInteraction(player, platform) {
 
 
             if (player.vx < 0) {
-                player.vx = player.vx + 0.06;
+                player.vx = player.vx + 0.01;
                 player.vy = 0;
                 player.ay = 0;
                 if (player.vx > -0.1) {
@@ -447,10 +473,10 @@ function checkGrounded() {
     if (grounded === false) {
         if (icy) {
             if (player.vx >= 0) {
-                player.vx -= 0.065
+                player.vx -= 0.075
             }
             if (player.vx <= 0) {
-                player.vx += 0.065
+                player.vx += 0.075
             }
         }
         player.ay += gravity;
@@ -555,7 +581,7 @@ function indication() {
     if (bounce) {
         dotCount = 9 * (charge / 50)
     }
-    if (!bounce) {
+    else if (!bounce) {
         dotCount = 15
     }
     do {

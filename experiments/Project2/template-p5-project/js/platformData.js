@@ -5,7 +5,7 @@ let platformData = [
         x: 750,
         y: 3500,
         w: 1500,
-        h: 1300,
+        h: 1500,
         type: "normal"
     },
     //a2 (low grav zone)
@@ -2025,5 +2025,41 @@ let platformData = [
         w: 10,
         h: 50,
         type: "bouncyRight"
+    },
+    {
+        x: 2750,
+        y: 855,
+        w: 100,
+        h: 15,
+        type: "bouncyBottom"
+    },
+    //p71
+    {
+        x: 2600,
+        y: 1200,
+        w: 100,
+        h: 25,
+        type: "top"
+    },
+    {
+        x: 2645,
+        y: 1225,
+        w: 10,
+        h: 30,
+        type: "right"
+    },
+    {
+        x: 2555,
+        y: 1225,
+        w: 10,
+        h: 30,
+        type: "left"
+    },
+    {
+        x: 2600,
+        y: 1245,
+        w: 100,
+        h: 15,
+        type: "bottom"
     },
 ];
