@@ -81,7 +81,7 @@ let mediumFlower
 function preload() {
     arrow = loadImage('assets/images/arrow.gif')
     arrowArc = loadImage('assets/images/Project2ArcArrowGif.gif')
-    mediumFlower = loadImage('assets/images/Project2MediumPlatformFlower.gif')
+    mediumFlower = loadImage('assets/images/NewBouncyFlower.gif')
     //SOUND EXERCISE (PART 2) --- OPEN
     // Here is where I load the music
     icySoundtrack = loadSound('assets/sounds/jumpIce.wav')
@@ -559,10 +559,10 @@ falling, click such that they will land on
 a red platform. To get out of this immobile0
 state, just press w. 
 */
-function mousePressed() {
+/*function mousePressed() {
     player.x = mouseX
     player.y = mouseY
-}
+}*/
 //SOUND EXERCISE (PART 6) --- CLOSE
 
 //this makes it so there's an indicator where ur mouse is
