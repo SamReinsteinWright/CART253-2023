@@ -36,11 +36,35 @@ let arrowData = [
         type: "straight"
     },
     {
-        x: 150,
-        y: 3850,
-        w: 100,
-        h: 100,
+        x: 2200,
+        y: 2250,
+        w: 200,
+        h: 200,
         rotation: 0,
-        type: "mFlower"
+        type: "teleport"
+    },
+    {
+        x: 2800,
+        y: 1100,
+        w: 200,
+        h: 200,
+        rotation: 0,
+        type: "teleportIn"
+    },
+    {
+        x: 2500,
+        y: 2300,
+        w: 200,
+        h: 200,
+        rotation: 0,
+        type: "teleportIn"
+    },
+    {
+        x: 2450,
+        y: 1925,
+        w: 200,
+        h: 200,
+        rotation: 210,
+        type: "teleportIn"
     },
 ]

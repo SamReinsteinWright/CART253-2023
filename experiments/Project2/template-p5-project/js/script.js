@@ -76,12 +76,14 @@ let platforms = [];
 let dotCount = 15
 let arrow
 let arrowArc
-let mediumFlower
+let portal
+let portalIn
 
 function preload() {
     arrow = loadImage('assets/images/arrow.gif')
     arrowArc = loadImage('assets/images/Project2ArcArrowGif.gif')
-    mediumFlower = loadImage('assets/images/NewBouncyFlower.gif')
+    portal = loadImage('assets/images/portalOut.gif')
+    portalIn = loadImage('assets/images/Portal.gif')
     //SOUND EXERCISE (PART 2) --- OPEN
     // Here is where I load the music
     icySoundtrack = loadSound('assets/sounds/jumpIce.wav')
@@ -125,8 +127,6 @@ function draw() {
     background(0);
     //colour of player
     fill(255)
-    //drawing player
-    rect(player.x, player.y, player.w, player.h);
     //checks for interaction between the player and any given platform
     for (let platform of platforms) {
         checkInteraction(player, platform);
@@ -146,12 +146,16 @@ function draw() {
         if (arrowData[i].type === "arc") {
             image(arrowArc, 0, 0, 50, 50);
         }
-        if (arrowData[i].type === "mFlower") {
-            image(mediumFlower, 0, 0, arrowData[i].w, arrowData[i].h);
+        if (arrowData[i].type === "teleport") {
+            image(portal, 0, 0, arrowData[i].w, arrowData[i].h);
+        }
+        if (arrowData[i].type === "teleportIn") {
+            image(portalIn, 0, 0, arrowData[i].w, arrowData[i].h);
         }
 
         pop();
     }
+    rect(player.x, player.y, player.w, player.h);
     //calls the functions that check for the base interaction of the game
     checkCharging()
     checkGrounded()
@@ -212,6 +216,9 @@ function displayPlatform(platform) {
     }
     else if (platform.type === "bouncy") {
         fill(251, 72, 196, 30)
+    }
+    else if (platform.type === "teleportIn") {
+        fill(255, 95, 31, 50)
     }
 
     rect(platform.x, platform.y, platform.w, platform.h);
@@ -434,6 +441,16 @@ function checkInteraction(player, platform) {
             player.ay = 0
         }
     }
+    if (player.x + player.w / 2 > platform.x - platform.w / 2 &&
+        player.x - player.w / 2 < platform.x + platform.w / 2 &&
+        player.y + player.h / 2 > platform.y - platform.h / 2 &&
+        player.y - player.h / 2 < platform.y + platform.h / 2 &&
+        platform.type === "teleportIn") {
+        player.x = 2200
+        player.y = 2250
+        player.vx = player.vx * 1.9
+        player.vy = player.vy * 1.9
+    }
 
 
 
@@ -485,8 +502,8 @@ function checkGrounded() {
         player.x += player.vx;
         player.y += player.vy;
         if (!bounce) {
-            player.vx = constrain(player.vx, -17, 17)
-            player.vy = constrain(player.vy, -17, 17)
+            player.vx = constrain(player.vx, -20, 20)
+            player.vy = constrain(player.vy, -20, 20)
         }
         if (bounce) {
             player.vx = constrain(player.vx, -30, 30)
