@@ -67,4 +67,12 @@ let arrowData = [
         rotation: 210,
         type: "teleportIn"
     },
+    {
+        x: 1600,
+        y: 2400,
+        w: 200,
+        h: 200,
+        rotation: 90,
+        type: "teleportIn"
+    },
 ]

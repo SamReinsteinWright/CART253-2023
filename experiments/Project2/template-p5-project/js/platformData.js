@@ -31,6 +31,13 @@ let platformData = [
         h: 1500,
         type: "bouncy"
     },
+    {
+        x: 2150,
+        y: 2250,
+        w: 1300,
+        h: 1500,
+        type: "teleportArea"
+    },
     //P1
     {
         x: 110,
@@ -2172,5 +2179,115 @@ let platformData = [
         w: 50,
         h: 50,
         type: "teleportIn"
+    },
+    //p78
+    {
+        x: 1700,
+        y: 2300,
+        w: 100,
+        h: 25,
+        type: "top"
+    },
+    {
+        x: 1745,
+        y: 2320,
+        w: 10,
+        h: 30,
+        type: "right"
+    },
+    {
+        x: 1655,
+        y: 2320,
+        w: 10,
+        h: 30,
+        type: "left"
+    },
+    {
+        x: 1700,
+        y: 2340,
+        w: 100,
+        h: 15,
+        type: "bottom"
+    },
+    //p79
+    {
+        x: 1600,
+        y: 2400,
+        w: 50,
+        h: 50,
+        type: "teleportIn"
+    },
+    //p80
+    {
+        x: 2150,
+        y: 2700,
+        w: 100,
+        h: 25,
+        type: "top"
+    },
+    {
+        x: 2195,
+        y: 2720,
+        w: 10,
+        h: 30,
+        type: "right"
+    },
+    {
+        x: 2105,
+        y: 2720,
+        w: 10,
+        h: 30,
+        type: "left"
+    },
+    {
+        x: 2150,
+        y: 2740,
+        w: 100,
+        h: 15,
+        type: "bottom"
+    },
+    //p81
+    {
+        x: 2150,
+        y: 2700,
+        w: 100,
+        h: 25,
+        type: "top"
+    },
+    {
+        x: 2195,
+        y: 2720,
+        w: 10,
+        h: 30,
+        type: "right"
+    },
+    {
+        x: 2105,
+        y: 2720,
+        w: 10,
+        h: 30,
+        type: "left"
+    },
+    {
+        x: 2150,
+        y: 2740,
+        w: 100,
+        h: 15,
+        type: "bottom"
+    },
+    //p82
+    {
+        x: 2270,
+        y: 2650,
+        w: 10,
+        h: 100,
+        type: "Win"
+    },
+    {
+        x: 2300,
+        y: 2500,
+        w: 275,
+        h: 15,
+        type: "slideTop"
     },
 ];
